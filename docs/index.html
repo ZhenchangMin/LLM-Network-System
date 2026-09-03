@@ -38,30 +38,25 @@
 
       <div class="method-list">
         <article>
-          <h3>先问系统问题，不要先背术语</h3>
-          <p>每遇到一个新概念，先回答四件事：它解决什么问题；旧方法为什么不够；它改变了哪一层系统；代价是什么。比如学习 KV Cache 时，先理解“为什么 autoregressive decoding 会重复计算”，再看 K、V 张量。</p>
+          <h3>先从视频和网站教程入手</h3>
+          <p>面对一个完全陌生的方向，先选择解释清楚、图比较多的视频或教程建立整体印象。第一遍的目标不是记住所有细节，而是先知道这个领域在讨论什么、主要概念之间是什么关系。</p>
         </article>
         <article>
-          <h3>按“现象 → 机制 → 实现 → 论文”学习</h3>
-          <p>先看图和直觉，建立运行时画面；再理解机制；之后看 vLLM 或 Hugging Face 的实现接口；最后才读系统论文。不要把论文当作第一次接触概念的教材。</p>
+          <h3>遇到不懂的地方就问 AI</h3>
+          <p>看到不理解的术语、公式、图或系统机制时，直接把具体问题交给 AI，让它结合当前上下文解释。如果解释里又出现新的不懂之处，就继续追问，直到能够用自己的话复述出来。</p>
         </article>
         <article>
-          <h3>只学当前问题需要的深度</h3>
-          <p>能解释 prefill 和 decode 的差异，就先不用推导完整训练过程；能理解 PagedAttention 的 block/page 思路，就先不用研究 attention kernel。遇到真正的工程障碍，再沿依赖链向下补知识。</p>
+          <h3>围绕同一个问题不断向下追问</h3>
+          <p>不要一次让 AI “讲完整个 LLM Infra”。从当前卡住的问题开始，一层一层追问。例如先问“为什么需要 KV Cache”，再追问“缓存的 K/V 是什么”“为什么会占很多显存”“为什么可以跨 token 复用”。这样更容易形成连续的因果链。</p>
         </article>
         <article>
-          <h3>每学一个概念都留下“可解释输出”</h3>
-          <p>不要只收藏链接。学习结束后，用自己的话写 5 到 10 句话，或者画一张图，解释给一个没看过材料的组员。讲不清楚的地方才是下一步需要补的地方。</p>
+          <h3>最后让 AI 整理一份 Takeaway</h3>
+          <p>一个主题弄清楚后，让 AI 根据刚才的问答提取一份简短 takeaway，再自己检查和修改。这样方便整理思路，也更容易在之后快速回忆。</p>
         </article>
       </div>
 
-      <div class="learning-loop">
-        <strong>推荐循环</strong>
-        <span>看 20–40 分钟</span>
-        <span>关掉材料复述</span>
-        <span>画一张系统图</span>
-        <span>找一个真实实现对应</span>
-        <span>记录仍然不懂的问题</span>
+      <div class="note">
+        <strong>Takeaway 提示词：</strong>“请根据我们刚才关于这个问题的问答，帮我整理一份简短 takeaway。保留核心概念、关键因果关系、容易混淆的点，以及它和当前学习主题的关系。不要扩展新的知识点。”
       </div>
     </section>
 
@@ -71,21 +66,6 @@
         <div>
           <p class="label">HOW TO READ PAPERS</p>
           <h2>系统论文不要从第一页逐字硬啃</h2>
-        </div>
-      </div>
-
-      <div class="paper-method">
-        <div class="pass">
-          <b>第一遍 · 5–10 分钟</b>
-          <p>标题、摘要、Introduction、主要架构图和结果图、Conclusion。只回答：问题是什么、核心 idea 是什么、结果大概怎样、值不值得继续读。</p>
-        </div>
-        <div class="pass">
-          <b>第二遍 · 30–60 分钟</b>
-          <p>理解方法、关键设计选择、evaluation setup 和主要结果。局部公式或实现细节卡住时先做标记，不要让一个细节阻断整篇论文。</p>
-        </div>
-        <div class="pass">
-          <b>第三遍 · 按需</b>
-          <p>只有当这篇论文和我们的实现真正相关时，再追源码、假设、复杂推导、实验复现和潜在缺陷。</p>
         </div>
       </div>
 
@@ -133,9 +113,18 @@
         </div>
       </div>
 
-      <p class="section-intro">建议按顺序看。前四项是全组共同基础；看完以后应该能解释 token、decoder-only Transformer、self-attention、Q/K/V、自回归生成、prefill 和 decode。</p>
+      <p class="section-intro">建议先用很短的时间补上神经网络的直觉，再进入 Transformer。我们不需要先完整学习一门深度学习课程，但最好先知道 neuron、layer、weight / bias、activation 和 gradient descent 分别在做什么。之后再按顺序理解 token、Transformer、self-attention、Q/K/V、自回归生成、prefill 和 decode。</p>
 
       <div class="resource-list">
+        <a class="resource" href="https://www.3blue1brown.com/topics/neural-networks" target="_blank" rel="noreferrer">
+          <div class="resource-index">00</div>
+          <div class="resource-main">
+            <div class="resource-title">3Blue1Brown · Neural Networks</div>
+            <div class="resource-meta"><span class="required">建议先看</span> 视频 / 图解 · 约 35–50 分钟</div>
+            <p>先看 “But what is a Neural Network?”，再看 gradient descent 那一讲即可。目标是建立神经元、层、权重、偏置、激活和“模型如何学习”的直觉；backpropagation calculus 暂时不需要深入。这个系列后面也可以自然继续到 LLM、Transformer 和 Attention。</p>
+          </div>
+          <div class="open">打开</div>
+        </a>
         <a class="resource" href="https://huggingface.co/learn/llm-course/en/chapter1/1" target="_blank" rel="noreferrer">
           <div class="resource-index">01</div>
           <div class="resource-main">
@@ -282,7 +271,7 @@
       </div>
 
       <div class="order-list">
-        <div><b>第一阶段 · 建立模型直觉</b><p>01 → 02 → 04。目标是能说清 Transformer 生成 token 的基本过程，以及为什么会出现 KV Cache。</p></div>
+        <div><b>第一阶段 · 建立模型直觉</b><p>00 → 01 → 02 → 04，03 可选。先用 3Blue1Brown 快速补神经网络直觉，再进入 Transformer；目标是能说清模型怎样逐步生成 token，以及为什么会出现 KV Cache。</p></div>
         <div><b>第二阶段 · 进入 LLM Infra</b><p>05 → 06 → 07 → 09。目标是理解 KV Cache 为什么成为 serving 的内存瓶颈，以及 PagedAttention / prefix caching 如何改变系统。</p></div>
         <div><b>第三阶段 · 对接我们的 Project 5</b><p>08 → 10，再按兴趣看 11 / 12。此时开始思考 eviction、offload、reuse、multi-tier 和 workload-aware policy。</p></div>
       </div>

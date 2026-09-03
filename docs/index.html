@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LLM Infra 快速入门学习站：面向具备操作系统、计算机组成与编程基础的同学，聚焦 LLM inference 与 KV Cache。" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>LLM Infra Learning Hub · KV Cache Project</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="返回顶部">
+      <span class="brand-mark">K/V</span>
+      <span>
+        <strong>LLM Infra Learning Hub</strong>
+        <small>Project 5 · KV Cache Management</small>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="主导航">
+      <a href="#roadmap">最短路径</a>
+      <a href="#concepts">核心概念</a>
+      <a href="#resources">资源库</a>
+      <a href="#project">项目视角</a>
+    </nav>
+    <button id="themeToggle" class="icon-button" type="button" aria-label="切换明暗主题" title="切换明暗主题">◐</button>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">FOR A 9-PERSON BEGINNER TEAM</p>
+        <h1>不用先成为 LLM 专家，<br />先学会看懂 <span>LLM 是怎么跑起来的。</span></h1>
+        <p class="hero-lead">你们已经学过操作系统、计算机组成、基础编程和数学。这个站点只补上完成 KV Cache Project 真正需要的那一小段知识：Transformer 推理 → Prefill / Decode → KV Cache → PagedAttention → Prefix Cache / Offload / Eviction。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#roadmap">开始 6–8 小时核心路线</a>
+          <a class="button ghost" href="#resources">直接浏览资源</a>
+        </div>
+        <div class="hero-note"><strong>原则：</strong>先会解释系统现象，再看论文；先看图和例子，再看公式；训练细节、RLHF、复杂模型架构暂时都不是必修。</div>
+      </div>
+
+      <aside class="progress-card" aria-label="学习进度">
+        <div class="progress-header">
+          <span>核心路线进度</span>
+          <strong id="progressText">0 / 8</strong>
+        </div>
+        <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+        <p id="progressHint">从 Step 1 开始。完成项会保存在你的浏览器中。</p>
+        <button id="resetProgress" class="text-button" type="button">重置进度</button>
+      </aside>
+    </section>
+
+    <section class="section shell" id="roadmap">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CORE ROADMAP</p>
+          <h2>最短学习路径</h2>
+        </div>
+        <p>8 个步骤按顺序完成即可。每一步都给出“学到什么程度就够了”，避免陷进不必要的细节。</p>
+      </div>
+
+      <div class="roadmap-grid">
+        <article class="step-card" data-step="1">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-1" /> <span>Step 1</span></label>
+          <div class="step-meta"><span class="time">30–45 min</span><span class="level easy">轻量</span></div>
+          <h3>LLM 到底是什么？</h3>
+          <p>只建立 decoder-only Transformer 的高层心智模型：token → embedding → 多层 Transformer → next-token probability。</p>
+          <ul>
+            <li>知道 token 不是“一个单词”</li>
+            <li>知道 LLM 的输出本质是逐 token 预测</li>
+            <li>知道 inference 和 training 是两件不同的事</li>
+          </ul>
+          <a class="inline-link" href="#r-hf-transformer">推荐：Hugging Face Transformer 入门 →</a>
+        </article>
+
+        <article class="step-card" data-step="2">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-2" /> <span>Step 2</span></label>
+          <div class="step-meta"><span class="time">45–60 min</span><span class="level easy">轻量</span></div>
+          <h3>Attention 只理解 Q / K / V</h3>
+          <p>不用推完整矩阵求导。理解 Query 是“我在找什么”，Key 是“我有什么”，Value 是“真正取回的信息”。</p>
+          <ul>
+            <li>看懂 self-attention 的数据流</li>
+            <li>理解 causal mask：不能看到未来 token</li>
+            <li>理解为什么历史 K/V 能被重复利用</li>
+          </ul>
+          <a class="inline-link" href="#r-karpathy">可选视频：Karpathy Attention 章节 →</a>
+        </article>
+
+        <article class="step-card" data-step="3">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-3" /> <span>Step 3</span></label>
+          <div class="step-meta"><span class="time">30–40 min</span><span class="level easy">轻量</span></div>
+          <h3>Prefill 与 Decode</h3>
+          <p>这是从“懂 LLM”跨到“懂 LLM Infra”的关键。Prefill 一次处理 prompt；Decode 之后每轮通常只生成一个新 token。</p>
+          <ul>
+            <li>Prefill：并行度高、计算密集</li>
+            <li>Decode：逐 token、经常更受内存带宽影响</li>
+            <li>TTFT 与 TPOT/ITL 分别对应不同体验</li>
+          </ul>
+          <a class="inline-link" href="#r-nvidia-inference">推荐：NVIDIA Inference Optimization →</a>
+        </article>
+
+        <article class="step-card emphasis" data-step="4">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-4" /> <span>Step 4</span></label>
+          <div class="step-meta"><span class="time">45 min</span><span class="level core">核心</span></div>
+          <h3>KV Cache：项目真正的起点</h3>
+          <p>生成第 n+1 个 token 时，不应该重新计算前 n 个 token 的 K/V。缓存它们，用显存换计算。</p>
+          <ul>
+            <li>为什么 KV Cache 会随 sequence length 增长</li>
+            <li>为什么长上下文 + 高并发容易吃满显存</li>
+            <li>为什么 cache 管理直接影响吞吐和延迟</li>
+          </ul>
+          <a class="inline-link" href="#r-hf-kv">必看：Hugging Face KV Cache →</a>
+        </article>
+
+        <article class="step-card emphasis" data-step="5">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-5" /> <span>Step 5</span></label>
+          <div class="step-meta"><span class="time">60–75 min</span><span class="level core">核心</span></div>
+          <h3>PagedAttention：把 OS 知识迁移过来</h3>
+          <p>你们学过虚拟内存，这是最大的优势。vLLM 把 KV Cache 分成 block，思路和 paging 很相似：避免连续大块内存带来的 fragmentation。</p>
+          <ul>
+            <li>physical block / logical block 的对应关系</li>
+            <li>internal / external fragmentation</li>
+            <li>为什么更好的内存利用率能容纳更大的 batch</li>
+          </ul>
+          <a class="inline-link" href="#r-pagedattention">论文只读图 + Introduction + Design →</a>
+        </article>
+
+        <article class="step-card" data-step="6">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-6" /> <span>Step 6</span></label>
+          <div class="step-meta"><span class="time">45–60 min</span><span class="level medium">适中</span></div>
+          <h3>Prefix Caching：不同请求也能复用 KV</h3>
+          <p>如果多个请求共享 system prompt、长文档或对话前缀，之前算过的 KV 可能直接命中，而不是重新 prefill。</p>
+          <ul>
+            <li>区分“同一次生成的 KV Cache”和“跨请求 Prefix Cache”</li>
+            <li>理解 hash / radix tree 两类组织思路</li>
+            <li>理解 hit rate 为什么与 workload 强相关</li>
+          </ul>
+          <a class="inline-link" href="#r-vllm-prefix">先看 vLLM Prefix Caching →</a>
+        </article>
+
+        <article class="step-card emphasis" data-step="7">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-7" /> <span>Step 7</span></label>
+          <div class="step-meta"><span class="time">45–60 min</span><span class="level core">核心</span></div>
+          <h3>Cache 满了：Evict、Offload 还是保留？</h3>
+          <p>这就是你们最可能产生方法创新的位置。显存有限时，需要决定“谁值得继续留在快层”。</p>
+          <ul>
+            <li>LRU：最近最少使用</li>
+            <li>ARC / frequency / reuse：考虑访问模式</li>
+            <li>GPU → CPU：容量变大，但搬运也有代价</li>
+          </ul>
+          <a class="inline-link" href="#r-vllm-offload">必看：vLLM KV Offloading →</a>
+        </article>
+
+        <article class="step-card" data-step="8">
+          <label class="step-check"><input type="checkbox" class="progress-check" data-progress="step-8" /> <span>Step 8</span></label>
+          <div class="step-meta"><span class="time">30–45 min</span><span class="level medium">适中</span></div>
+          <h3>最后学会读实验指标</h3>
+          <p>系统优化不能只说“更快”。至少能区分用户体验指标、吞吐指标和 cache 指标。</p>
+          <ul>
+            <li><strong>TTFT</strong>：请求到第一个 token</li>
+            <li><strong>TPOT / ITL</strong>：后续 token 的生成节奏</li>
+            <li><strong>Throughput</strong>：tokens/s 或 requests/s</li>
+            <li><strong>Cache hit / eviction / preemption</strong>：解释为什么快或慢</li>
+          </ul>
+          <a class="inline-link" href="#project">带着这些指标进入 Project 5 →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="concepts">
+      <div class="section-heading">
+        <div><p class="eyebrow">MENTAL MODELS</p><h2>把新知识挂到你们学过的课上</h2></div>
+        <p>LLM Infra 不需要从零建立一套完全陌生的知识。很多核心问题其实就是 OS / Architecture 在新的 workload 上重新出现。</p>
+      </div>
+
+      <div class="analogy-grid">
+        <article class="analogy-card">
+          <span class="analogy-from">操作系统</span><span class="arrow">→</span><span class="analogy-to">PagedAttention</span>
+          <h3>虚拟内存 / Page</h3>
+          <p>KV Cache 不再要求每条 sequence 占一整块连续显存，而是拆成固定大小的 block。重点关注 fragmentation、mapping、sharing。</p>
+        </article>
+        <article class="analogy-card">
+          <span class="analogy-from">Cache</span><span class="arrow">→</span><span class="analogy-to">KV Eviction</span>
+          <h3>LRU / Locality</h3>
+          <p>当容量不够，决定淘汰谁。传统 recency 只是一个信号；LLM workload 还能利用 prefix reuse、recompute cost、session state 等信息。</p>
+        </article>
+        <article class="analogy-card">
+          <span class="analogy-from">存储层次</span><span class="arrow">→</span><span class="analogy-to">KV Offload</span>
+          <h3>HBM ↔ DRAM ↔ 更慢介质</h3>
+          <p>GPU HBM 快而小，CPU RAM 慢而大。把 KV 搬出去能腾显存，但要支付传输和恢复的延迟。</p>
+        </article>
+        <article class="analogy-card">
+          <span class="analogy-from">排队 / 调度</span><span class="arrow">→</span><span class="analogy-to">LLM Serving</span>
+          <h3>吞吐 vs. 尾延迟</h3>
+          <p>更大的 batch 常有利于吞吐，却可能增加等待。系统优化必须说明是在优化 throughput、TTFT 还是 tail latency。</p>
+        </article>
+      </div>
+
+      <div class="do-not-learn">
+        <h3>现在可以暂时不学什么？</h3>
+        <div class="pill-list">
+          <span>反向传播推导</span><span>预训练数据工程</span><span>RLHF / PPO</span><span>LoRA 微调</span><span>MoE 路由细节</span><span>分布式训练</span><span>NCCL 深入实现</span><span>复杂 CUDA kernel 编写</span>
+        </div>
+        <p>这些都可能有价值，但不是你们进入 KV Cache Project 的前置条件。遇到具体问题再按需补。</p>
+      </div>
+    </section>
+
+    <section class="section shell" id="resources">
+      <div class="section-heading resource-heading">
+        <div><p class="eyebrow">CURATED LIBRARY</p><h2>论文 / 视频 / 教程 / 博客</h2></div>
+        <p>默认展示全部资源，并用“必看 / 推荐 / 选读”标出优先级。搜索和筛选不会跳转页面，适合组员快速找同一份材料。</p>
+      </div>
+
+      <aside class="paper-reading-guide" aria-labelledby="paper-reading-title">
+        <div class="paper-reading-kicker">??????</div>
+        <div class="paper-reading-main">
+          <div>
+            <h3 id="paper-reading-title">????????????</h3>
+            <p>??????????????<strong>??????????????????? insight ???????????</strong>????????????</p>
+          </div>
+          <ol class="paper-pass-list">
+            <li><strong>Pass 1 ? 5?10 min</strong><span>??????Introduction????Conclusion????????????</span></li>
+            <li><strong>Pass 2 ? 30?60 min</strong><span>???????????????????????????</span></li>
+            <li><strong>Pass 3 ? ??</strong><span>???????????????????????????</span></li>
+          </ol>
+        </div>
+        <div class="paper-reading-links">
+          <a href="https://web.stanford.edu/class/cs245/readings/how-to-read-a-paper.pdf" target="_blank" rel="noreferrer">Keshav ? How to Read a Paper ?</a>
+          <a href="https://web.stanford.edu/class/cs197/assignments/a1.html" target="_blank" rel="noreferrer">Stanford CS197 ? Reading a Paper ?</a>
+        </div>
+      </aside>
+
+      <div class="resource-controls">
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="resourceSearch" type="search" placeholder="搜索：KV Cache、PagedAttention、vLLM…" />
+        </label>
+        <div class="filter-group" role="group" aria-label="资源类型筛选">
+          <button class="filter-chip active" data-filter="all" type="button">全部</button>
+          <button class="filter-chip" data-filter="video" type="button">视频</button>
+          <button class="filter-chip" data-filter="tutorial" type="button">教程</button>
+          <button class="filter-chip" data-filter="paper" type="button">论文</button>
+          <button class="filter-chip" data-filter="docs" type="button">文档</button>
+        </div>
+      </div>
+
+      <div id="resourceGrid" class="resource-grid"></div>
+      <p id="emptyState" class="empty-state" hidden>没有匹配的资源，换一个关键词或筛选条件试试。</p>
+    </section>
+
+    <section class="section shell" id="project">
+      <div class="section-heading">
+        <div><p class="eyebrow">PROJECT 5 LENS</p><h2>学完以后，应该能回答这些问题</h2></div>
+        <p>如果组员能独立回答下面大部分问题，就已经具备开始做 baseline、profiling 和 policy design 的共同语言。</p>
+      </div>
+
+      <div class="question-list">
+        <details open><summary>1. KV Cache 到底缓存了什么？为什么只在 inference 中特别重要？</summary><p>每一层 self-attention 对历史 token 计算出的 Key / Value。自回归生成时历史 token 不会变化，因此可以复用；代价是 cache 随上下文增长而占用大量显存。</p></details>
+        <details><summary>2. 为什么“显存更省”会提高 serving throughput？</summary><p>更少的 KV 内存浪费通常意味着同一张 GPU 可以同时容纳更多 active sequences，从而形成更大的有效 batch，提高硬件利用率。但这不是无条件成立，仍需实测延迟与吞吐。</p></details>
+        <details><summary>3. Prefix Cache 和单个 request 的 KV Cache 是一回事吗？</summary><p>底层存的仍是 KV，但复用范围不同。普通生成 cache 主要避免同一 request 内重复计算；prefix caching 进一步尝试跨请求复用相同前缀对应的 KV block。</p></details>
+        <details><summary>4. Cache 满了为什么不能无脑 LRU？</summary><p>“多久没访问”不一定等价于“以后没价值”。某个很久没访问的 session 可能正在等待 tool，很快就会恢复；某个最近访问的大 prefix 也可能是一锤子买卖。Project 5 的研究空间就来自这些 workload-specific signals。</p></details>
+        <details><summary>5. CPU Offload 为什么不是免费的额外显存？</summary><p>GPU HBM 与 CPU DRAM 之间需要搬运数据。若 cache reuse 的计算节省不足以覆盖传输、同步和管理开销，offload 可能反而变慢。</p></details>
+        <details><summary>6. 我们最终至少要测哪些指标？</summary><p>TTFT、TPOT/ITL、throughput 是服务质量基础；同时记录 cache hit/miss、eviction、GPU KV utilization、preemption/offload 行为，才能解释性能变化的原因。</p></details>
+      </div>
+
+      <div class="project-direction">
+        <div>
+          <p class="eyebrow">CURRENT DIRECTION</p>
+          <h3>从“更聪明的淘汰策略”开始，而不是重写整个 inference engine</h3>
+          <p>推荐先把 LRU / ARC 当 baseline，再探索 workload-aware、queue-aware 或 session-aware 的 cache value。这样既有清晰研究问题，又能利用现成 vLLM 基础设施控制工程风险。</p>
+        </div>
+        <div class="code-diagram" aria-label="项目结构示意">
+          <span>LLM Request</span><b>↓</b><span>vLLM Engine</span><b>↓</b><span class="highlight">Our Cache Policy</span><b>↓</b><span>GPU KV ↔ CPU KV</span><b>↓</b><span>TTFT · Hit Rate · Throughput</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="team">
+      <div class="section-heading">
+        <div><p class="eyebrow">TEAM ONBOARDING</p><h2>9 人怎么一起学，而不是各看各的</h2></div>
+        <p>前几天先共享同一套最小知识，再进入 A/B/C 三个小组。这样后面讨论 policy 和实验时不会出现术语断层。</p>
+      </div>
+      <div class="team-grid">
+        <article><strong>Day 1 · 全员</strong><h3>Step 1–4</h3><p>Transformer 高层结构、Attention、Prefill/Decode、KV Cache。每人能画出一次 autoregressive inference 的数据流。</p></article>
+        <article><strong>Day 2 · 全员</strong><h3>Step 5–8</h3><p>PagedAttention、Prefix Cache、Offload/Eviction、指标。重点把 OS 的 paging/cache 知识迁移过来。</p></article>
+        <article><strong>Day 3 · 小组化</strong><h3>A / B / C 分流</h3><p>A 深入 vLLM 与 profiling；B 深入 cache policies 与论文；C 深入 benchmark、指标与实验自动化。仍共享同一份术语表。</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div><strong>LLM Infra Learning Hub</strong><p>为 LLM-Network-System · Project 5 团队维护。</p></div>
+    <div class="footer-links"><a href="#top">返回顶部 ↑</a><a href="https://docs.vllm.ai/" target="_blank" rel="noreferrer">vLLM Docs ↗</a></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

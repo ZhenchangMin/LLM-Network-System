@@ -116,43 +116,43 @@
       <p class="section-intro">建议先用很短的时间补上神经网络的直觉，再进入 Transformer。我们不需要先完整学习一门深度学习课程，但最好先知道 neuron、layer、weight / bias、activation 和 gradient descent 分别在做什么。之后再按顺序理解 token、Transformer、self-attention、Q/K/V、自回归生成、prefill 和 decode。</p>
 
       <div class="resource-list">
-        <a class="resource" href="https://www.3blue1brown.com/topics/neural-networks" target="_blank" rel="noreferrer">
+        <a class="resource" href="https://www.bilibili.com/video/BV1bx411M7Zx/" target="_blank" rel="noreferrer">
           <div class="resource-index">00</div>
           <div class="resource-main">
             <div class="resource-title">3Blue1Brown · Neural Networks</div>
             <div class="resource-meta"><span class="required">建议先看</span> 视频 / 图解 · 约 35–50 分钟</div>
-            <p>先看 “But what is a Neural Network?”，再看 gradient descent 那一讲即可。目标是建立神经元、层、权重、偏置、激活和“模型如何学习”的直觉；backpropagation calculus 暂时不需要深入。这个系列后面也可以自然继续到 LLM、Transformer 和 Attention。</p>
+            <p>先看官方双语的“神经网络的结构 Part 1”，然后从同一官方账号继续看梯度下降 Part 2 即可。目标是建立神经元、层、权重、偏置、激活和“模型如何学习”的直觉；反向传播的数学推导暂时不需要深入。</p>
           </div>
           <div class="open">打开</div>
         </a>
-        <a class="resource" href="https://huggingface.co/learn/llm-course/en/chapter1/1" target="_blank" rel="noreferrer">
+        <a class="resource" href="https://huggingface.co/learn/llm-course/zh-CN/chapter1/1" target="_blank" rel="noreferrer">
           <div class="resource-index">01</div>
           <div class="resource-main">
             <div class="resource-title">Hugging Face LLM Course · Chapter 1</div>
             <div class="resource-meta"><span class="required">必看</span> 教程 · 45–60 分钟</div>
-            <p>先建立 Transformer 和 LLM 的整体概念。优先看 How do Transformers work、Transformer Architectures 和 Inference with LLMs；fine-tuning 暂时跳过。</p>
+            <p>使用 Hugging Face 官方中文版。先建立 Transformer 和 LLM 的整体概念，优先看 Transformer 如何工作、模型架构和 LLM inference；微调相关内容暂时跳过。</p>
           </div>
           <div class="open">打开</div>
         </a>
 
-        <a class="resource" href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noreferrer">
+        <a class="resource" href="https://www.bilibili.com/video/BV13z421U7cs/" target="_blank" rel="noreferrer">
           <div class="resource-index">02</div>
           <div class="resource-main">
-            <div class="resource-title">The Illustrated Transformer</div>
-            <div class="resource-meta"><span class="required">必看</span> 图解博客 · 30–45 分钟</div>
-            <p>适合第一次建立 attention 的视觉直觉。重点理解 token representation、self-attention 和 Q/K/V，不需要记所有矩阵形状。</p>
+            <div class="resource-title">3Blue1Brown · GPT 是什么？直观解释 Transformer</div>
+            <div class="resource-meta"><span class="required">必看</span> 官方双语视频 · 约 27 分钟</div>
+            <p>从生成 token、embedding、Transformer 整体结构建立视觉直觉。这里先看懂数据怎样流过模型，不需要记所有矩阵维度。</p>
           </div>
-          <div class="open">打开</div>
+          <div class="open">Bilibili</div>
         </a>
 
-        <a class="resource" href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noreferrer">
+        <a class="resource" href="https://www.bilibili.com/video/BV1TZ421j7Ke" target="_blank" rel="noreferrer">
           <div class="resource-index">03</div>
           <div class="resource-main">
-            <div class="resource-title">Andrej Karpathy · Let's build GPT from scratch</div>
-            <div class="resource-meta"><span class="recommended">推荐</span> 视频 · 精选 40–50 分钟</div>
-            <p>不要求完整看两小时。重点看 self-attention、multi-head attention 和 Transformer block 的部分，把抽象结构和代码对应起来。</p>
+            <div class="resource-title">3Blue1Brown · 直观解释 Attention，Transformer 的核心</div>
+            <div class="resource-meta"><span class="required">必看</span> 官方双语视频 · 约 26 分钟</div>
+            <p>重点理解 Query / Key / Value、causal mask、multi-head attention，以及历史 token 为什么会留下可复用的 K/V。这一讲和后面的 KV Cache 直接衔接。</p>
           </div>
-          <div class="open">YouTube</div>
+          <div class="open">Bilibili</div>
         </a>
 
         <a class="resource" href="https://huggingface.co/docs/transformers/cache_explanation" target="_blank" rel="noreferrer">
@@ -239,10 +239,10 @@
           <div class="open">论文</div>
         </a>
 
-        <a class="resource" href="https://docs.lmcache.ai/" target="_blank" rel="noreferrer">
+        <a class="resource" href="https://docs.lmcache.ai/zh_CN/" target="_blank" rel="noreferrer">
           <div class="resource-index">11</div>
           <div class="resource-main">
-            <div class="resource-title">LMCache Documentation</div>
+            <div class="resource-title">LMCache 中文文档</div>
             <div class="resource-meta"><span class="recommended">推荐</span> 工程文档 · 20–30 分钟</div>
             <p>看 KV Cache 如何变成独立的共享和分层资源。先看 Overview / Architecture，暂时不要求安装和复现。</p>
           </div>
@@ -258,6 +258,26 @@
           </div>
           <div class="open">论文 / 视频</div>
         </a>
+
+        <a class="resource" href="https://www.usenix.org/conference/atc25/presentation/wang-jiahao" target="_blank" rel="noreferrer">
+          <div class="resource-index">13</div>
+          <div class="resource-main">
+            <div class="resource-title">KVCache Cache in the Wild · USENIX ATC 2025</div>
+            <div class="resource-meta"><span class="recommended">推荐论文</span> 30–45 分钟</div>
+            <p>非常贴近我们的 Project：用真实云服务 trace 研究 KV reuse、reuse time 和 cache pressure，并进一步设计 workload-aware eviction。重点看 workload characterization、设计动机和 eviction policy。</p>
+          </div>
+          <div class="open">论文 / 视频</div>
+        </a>
+
+        <a class="resource" href="https://arxiv.org/abs/2507.07400" target="_blank" rel="noreferrer">
+          <div class="resource-index">14</div>
+          <div class="resource-main">
+            <div class="resource-title">KVFlow · Agent-aware KV Cache Management</div>
+            <div class="resource-meta"><span class="optional">方向选读</span> 30–45 分钟</div>
+            <p>如果后面想做 agent / session-aware 的差异化方向，再读这篇。它利用 agent workflow 的未来执行信息指导 eviction 和 prefetch，能帮助理解“LRU 之外还能利用什么信息”。</p>
+          </div>
+          <div class="open">论文</div>
+        </a>
       </div>
     </section>
 
@@ -271,9 +291,9 @@
       </div>
 
       <div class="order-list">
-        <div><b>第一阶段 · 建立模型直觉</b><p>00 → 01 → 02 → 04，03 可选。先用 3Blue1Brown 快速补神经网络直觉，再进入 Transformer；目标是能说清模型怎样逐步生成 token，以及为什么会出现 KV Cache。</p></div>
+        <div><b>第一阶段 · 建立模型直觉</b><p>00 → 01 → 02 → 03 → 04。先用中文视频快速补神经网络、Transformer 和 Attention 的直觉，再进入 KV Cache；目标是能说清模型怎样逐步生成 token，以及为什么历史 K/V 可以被复用。</p></div>
         <div><b>第二阶段 · 进入 LLM Infra</b><p>05 → 06 → 07 → 09。目标是理解 KV Cache 为什么成为 serving 的内存瓶颈，以及 PagedAttention / prefix caching 如何改变系统。</p></div>
-        <div><b>第三阶段 · 对接我们的 Project 5</b><p>08 → 10，再按兴趣看 11 / 12。此时开始思考 eviction、offload、reuse、multi-tier 和 workload-aware policy。</p></div>
+        <div><b>第三阶段 · 对接我们的 Project 5</b><p>08 → 13 → 10。先用真实 workload 的论文理解 eviction 为什么不能只看 LRU，再看 SGLang 的 prefix reuse。11 / 12 用于理解 multi-tier，14 只在我们决定做 agent-aware 方向时再看。</p></div>
       </div>
     </section>
 

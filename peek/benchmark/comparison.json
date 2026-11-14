@@ -1,0 +1,65 @@
+{
+  "ttft_mean_ms": {
+    "vanilla_median": 505.51331587134234,
+    "peek_median": 411.11701817771973,
+    "peek_minus_vanilla": -94.39629769362261,
+    "peek_change_pct": -18.673355326142847,
+    "vanilla_over_peek": 1.2296093168607691
+  },
+  "ttft_p95_ms": {
+    "vanilla_median": 1715.1369870116469,
+    "peek_median": 1348.544813983608,
+    "peek_minus_vanilla": -366.5921730280388,
+    "peek_change_pct": -21.373929651343314,
+    "vanilla_over_peek": 1.2718427813645463
+  },
+  "ttft_p99_ms": {
+    "vanilla_median": 2139.53556100023,
+    "peek_median": 2645.9357099956833,
+    "peek_minus_vanilla": 506.4001489954535,
+    "peek_change_pct": 23.668695123660967,
+    "vanilla_over_peek": 0.808612073572914
+  },
+  "e2e_mean_ms": {
+    "vanilla_median": 1175.068130490997,
+    "peek_median": 1080.952960048957,
+    "peek_minus_vanilla": -94.11517044203993,
+    "peek_change_pct": -8.009337331165156,
+    "vanilla_over_peek": 1.0870668511216042
+  },
+  "throughput_req_s": {
+    "vanilla_median": 16.291940044862923,
+    "peek_median": 16.32662815909259,
+    "peek_minus_vanilla": 0.03468811422966667,
+    "peek_change_pct": 0.21291579845093,
+    "vanilla_over_peek": 0.9978753656975798
+  },
+  "cache_hit_pct": {
+    "vanilla_median": 81.28445389652776,
+    "peek_median": 81.02461519024658,
+    "peek_minus_vanilla": -0.25983870628118666,
+    "peek_change_pct": -0.31966593096873774,
+    "vanilla_over_peek": 1.003206910710666
+  },
+  "prefilled_tokens": {
+    "vanilla_median": 44441,
+    "peek_median": 45058,
+    "peek_minus_vanilla": 617,
+    "peek_change_pct": 1.3883575977138296,
+    "vanilla_over_peek": 0.9863065382396022
+  },
+  "tpot_mean_ms": {
+    "vanilla_median": 10.737334219327922,
+    "peek_median": 10.760624521302887,
+    "peek_minus_vanilla": 0.02329030197496529,
+    "peek_change_pct": 0.2169095373136587,
+    "vanilla_over_peek": 0.9978355994181511
+  },
+  "slo_attainment_pct": {
+    "vanilla_median": 98.21428571428571,
+    "peek_median": 97.76785714285714,
+    "peek_minus_vanilla": -0.4464285714285694,
+    "peek_change_pct": -0.4545454545454519,
+    "vanilla_over_peek": 1.004566210045662
+  }
+}

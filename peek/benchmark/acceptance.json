@@ -1,0 +1,14 @@
+{
+  "six_formal_runs_complete": true,
+  "all_1344_measured_requests_successful": true,
+  "all_1536_submitted_records_saved": true,
+  "all_1536_submitted_requests_successful": true,
+  "all_metrics_recomputed_from_raw_records": true,
+  "all_workloads_match_historical_A3": true,
+  "all_runs_have_observed_nonzero_waiting_queue": true,
+  "all_peek_runs_show_hook_and_strategy_injection": true,
+  "no_vanilla_run_shows_peek_injection": true,
+  "no_extra_debug_flags_enabled": true,
+  "all_226_original_protected_files_unchanged": true,
+  "all_formal_runs_have_no_fatal_log_signals": true
+}

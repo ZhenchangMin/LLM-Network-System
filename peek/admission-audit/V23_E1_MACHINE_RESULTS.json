@@ -1,0 +1,4255 @@
+{
+  "analysis_type": "observational trace inventory; no causal counterfactual performance",
+  "generated_utc": "2026-11-14",
+  "source_root": "/root/bayes-tmp/peek-c-group/experiment",
+  "cases": [
+    [
+      "v17_peek_aa",
+      "gpu_ablation_v17_seed1911_peek_aa",
+      "no_chunk"
+    ],
+    [
+      "v17_trace_ab",
+      "gpu_ablation_v17_seed1911_audit_v2",
+      "no_chunk"
+    ],
+    [
+      "v21_native_shadow",
+      "gpu_ablation_v21_seed1911_native_shadow",
+      "chunk512"
+    ],
+    [
+      "v21_victim",
+      "gpu_ablation_v21_seed1911_victim_ticket",
+      "chunk512"
+    ],
+    [
+      "v22_cross_1911",
+      "gpu_ablation_v22_seed1911_crosssection_chunk",
+      "chunk512"
+    ],
+    [
+      "v22_cross_1711",
+      "gpu_ablation_v22_seed1711_crosssection_chunk",
+      "chunk512"
+    ],
+    [
+      "v22_quick_1911",
+      "gpu_ablation_v22_seed1911_quickdemote_chunk",
+      "chunk512"
+    ]
+  ],
+  "runs": [
+    {
+      "case": "v17_peek_aa",
+      "root": "gpu_ablation_v17_seed1911_peek_aa",
+      "name": "01_peek_trace_r1_attempt01",
+      "config_type": "no_chunk",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30172"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 321
+      },
+      "goodput_req_per_s": 6.190596827099116,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2273.641,
+        "p95_ttft_ms": 8100.449,
+        "p99_ttft_ms": 11222.985,
+        "ttft_ge_2000": 191
+      },
+      "trace": {
+        "has_trace": true,
+        "trace_files": [
+          {
+            "name": "gpu_ablation_v17_seed1911_peek_aa/runs/01_peek_trace_r1_attempt01/runtime/peek_audit_159108.jsonl",
+            "bytes": 1346165,
+            "sha256": "8dc44682c15a750cc21dd381c0c8253fe3f7b42473d49a41a4c046ea45ba8577"
+          }
+        ],
+        "event_counts": {
+          "sort": 340,
+          "prefill_batch": 288,
+          "cache_evict": 280
+        },
+        "fields": {
+          "sort": [
+            "kind",
+            "n",
+            "proposal_rid",
+            "queue",
+            "sort_tick",
+            "t"
+          ],
+          "prefill_batch": [
+            "admitted",
+            "admitted_count",
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "sort_tick",
+            "t",
+            "waiting_count_after",
+            "waiting_count_before"
+          ],
+          "cache_evict": [
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "preexisting_leaf_diff_count",
+            "removed_kv_tokens",
+            "removed_nodes",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ]
+        },
+        "sort_ticks_observed": 340,
+        "nonempty_prefill_ticks": 288,
+        "sort_ticks_no_prefill_record": 52,
+        "sort_tick_without_nonempty_prefill_sample": [
+          7,
+          14,
+          24,
+          35,
+          45,
+          46,
+          50,
+          52,
+          65,
+          74
+        ],
+        "sort_unique_request_rids": 578,
+        "sort_rid_scored_client_join": 512,
+        "admitted_rid_scored_client_join": 512,
+        "trace_extra_requests": 66,
+        "prefill_ticks_with_raw_free_kv_after_gt0": 287,
+        "prefill_ticks_with_unadmitted_sort_candidate": 283,
+        "prefill_ticks_with_nonempty_sort_suffix": 283,
+        "not_admitted_candidate_rid_occurrences": 6322,
+        "distinct_scored_candidate_rids": 463,
+        "repeated_candidate_occurrences_excluding_first": 5859,
+        "candidate_ttft_ge2000_distinct": 191,
+        "scored_ttft_ge2000": 191,
+        "raw_allocator_proxy_screen_events": 921,
+        "raw_allocator_proxy_screen_distinct": 177,
+        "naive_complete_512_and_raw_free_proxy_events": 2,
+        "naive_complete_512_and_raw_free_proxy_rids": 2,
+        "raw_free_proxy_not_safe_admission": true,
+        "native_admission_slack_confirmed": null,
+        "complete_prompt_prefill_confirmed": null,
+        "zero_extra_eviction_confirmed": null,
+        "future_kv_and_batch_time_confirmed": null,
+        "eviction_events": 280,
+        "eviction_deleted_kv_tokens": 389657,
+        "shadow_validation_events": 0,
+        "shadow_validation_matches": 0,
+        "per_tick_illustrative_rows": [
+          {
+            "tick": 5,
+            "sort_queue_count": 4,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 3034,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 6,
+            "sort_queue_count": 4,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 989,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 8,
+            "sort_queue_count": 16,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 13,
+            "free_kv_after_raw": 546,
+            "evictable_after_raw": 4566,
+            "waiting_after": 13
+          },
+          {
+            "tick": 9,
+            "sort_queue_count": 13,
+            "admitted_count": 4,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 804,
+            "evictable_after_raw": 2260,
+            "waiting_after": 9
+          },
+          {
+            "tick": 10,
+            "sort_queue_count": 9,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 1257,
+            "evictable_after_raw": 2,
+            "waiting_after": 7
+          },
+          {
+            "tick": 11,
+            "sort_queue_count": 13,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 10,
+            "free_kv_after_raw": 2468,
+            "evictable_after_raw": 2644,
+            "waiting_after": 10
+          },
+          {
+            "tick": 12,
+            "sort_queue_count": 11,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 420,
+            "evictable_after_raw": 2644,
+            "waiting_after": 9
+          },
+          {
+            "tick": 13,
+            "sort_queue_count": 9,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 6,
+            "free_kv_after_raw": 1014,
+            "evictable_after_raw": 2,
+            "waiting_after": 6
+          },
+          {
+            "tick": 15,
+            "sort_queue_count": 14,
+            "admitted_count": 5,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 520,
+            "evictable_after_raw": 2532,
+            "waiting_after": 9
+          },
+          {
+            "tick": 16,
+            "sort_queue_count": 9,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 6,
+            "free_kv_after_raw": 965,
+            "evictable_after_raw": 39,
+            "waiting_after": 6
+          },
+          {
+            "tick": 17,
+            "sort_queue_count": 7,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 6,
+            "free_kv_after_raw": 579,
+            "evictable_after_raw": 39,
+            "waiting_after": 6
+          },
+          {
+            "tick": 18,
+            "sort_queue_count": 19,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 16,
+            "free_kv_after_raw": 439,
+            "evictable_after_raw": 4673,
+            "waiting_after": 16
+          }
+        ]
+      }
+    },
+    {
+      "case": "v17_peek_aa",
+      "root": "gpu_ablation_v17_seed1911_peek_aa",
+      "name": "02_peek_trace_r2_attempt01",
+      "config_type": "no_chunk",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30172"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 323
+      },
+      "goodput_req_per_s": 6.226361611034212,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2201.081,
+        "p95_ttft_ms": 7784.211,
+        "p99_ttft_ms": 11352.725,
+        "ttft_ge_2000": 189
+      },
+      "trace": {
+        "has_trace": true,
+        "trace_files": [
+          {
+            "name": "gpu_ablation_v17_seed1911_peek_aa/runs/02_peek_trace_r2_attempt01/runtime/peek_audit_160240.jsonl",
+            "bytes": 1335866,
+            "sha256": "2bec2e1faf7f9451578b21048c46a4fe2b2f91f3340778ff05ceb72f4f5592ff"
+          }
+        ],
+        "event_counts": {
+          "sort": 348,
+          "prefill_batch": 296,
+          "cache_evict": 270
+        },
+        "fields": {
+          "sort": [
+            "kind",
+            "n",
+            "proposal_rid",
+            "queue",
+            "sort_tick",
+            "t"
+          ],
+          "prefill_batch": [
+            "admitted",
+            "admitted_count",
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "sort_tick",
+            "t",
+            "waiting_count_after",
+            "waiting_count_before"
+          ],
+          "cache_evict": [
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "preexisting_leaf_diff_count",
+            "removed_kv_tokens",
+            "removed_nodes",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ]
+        },
+        "sort_ticks_observed": 348,
+        "nonempty_prefill_ticks": 296,
+        "sort_ticks_no_prefill_record": 52,
+        "sort_tick_without_nonempty_prefill_sample": [
+          5,
+          7,
+          9,
+          27,
+          31,
+          38,
+          52,
+          70,
+          74,
+          86
+        ],
+        "sort_unique_request_rids": 578,
+        "sort_rid_scored_client_join": 512,
+        "admitted_rid_scored_client_join": 512,
+        "trace_extra_requests": 66,
+        "prefill_ticks_with_raw_free_kv_after_gt0": 296,
+        "prefill_ticks_with_unadmitted_sort_candidate": 290,
+        "prefill_ticks_with_nonempty_sort_suffix": 290,
+        "not_admitted_candidate_rid_occurrences": 6161,
+        "distinct_scored_candidate_rids": 462,
+        "repeated_candidate_occurrences_excluding_first": 5699,
+        "candidate_ttft_ge2000_distinct": 189,
+        "scored_ttft_ge2000": 189,
+        "raw_allocator_proxy_screen_events": 586,
+        "raw_allocator_proxy_screen_distinct": 165,
+        "naive_complete_512_and_raw_free_proxy_events": 9,
+        "naive_complete_512_and_raw_free_proxy_rids": 8,
+        "raw_free_proxy_not_safe_admission": true,
+        "native_admission_slack_confirmed": null,
+        "complete_prompt_prefill_confirmed": null,
+        "zero_extra_eviction_confirmed": null,
+        "future_kv_and_batch_time_confirmed": null,
+        "eviction_events": 270,
+        "eviction_deleted_kv_tokens": 392928,
+        "shadow_validation_events": 0,
+        "shadow_validation_matches": 0,
+        "per_tick_illustrative_rows": [
+          {
+            "tick": 8,
+            "sort_queue_count": 3,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 871,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 10,
+            "sort_queue_count": 16,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 13,
+            "free_kv_after_raw": 546,
+            "evictable_after_raw": 4566,
+            "waiting_after": 13
+          },
+          {
+            "tick": 11,
+            "sort_queue_count": 13,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 11,
+            "free_kv_after_raw": 804,
+            "evictable_after_raw": 2260,
+            "waiting_after": 11
+          },
+          {
+            "tick": 12,
+            "sort_queue_count": 11,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 1821,
+            "evictable_after_raw": 2,
+            "waiting_after": 8
+          },
+          {
+            "tick": 13,
+            "sort_queue_count": 8,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 1267,
+            "evictable_after_raw": 2,
+            "waiting_after": 7
+          },
+          {
+            "tick": 14,
+            "sort_queue_count": 14,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 11,
+            "free_kv_after_raw": 2185,
+            "evictable_after_raw": 2927,
+            "waiting_after": 11
+          },
+          {
+            "tick": 15,
+            "sort_queue_count": 11,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 137,
+            "evictable_after_raw": 2927,
+            "waiting_after": 9
+          },
+          {
+            "tick": 16,
+            "sort_queue_count": 11,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 1014,
+            "evictable_after_raw": 2,
+            "waiting_after": 8
+          },
+          {
+            "tick": 17,
+            "sort_queue_count": 10,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 705,
+            "evictable_after_raw": 2,
+            "waiting_after": 9
+          },
+          {
+            "tick": 18,
+            "sort_queue_count": 14,
+            "admitted_count": 4,
+            "not_admitted_in_sort": 10,
+            "free_kv_after_raw": 541,
+            "evictable_after_raw": 3540,
+            "waiting_after": 10
+          },
+          {
+            "tick": 19,
+            "sort_queue_count": 10,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 865,
+            "evictable_after_raw": 1168,
+            "waiting_after": 7
+          },
+          {
+            "tick": 20,
+            "sort_queue_count": 8,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 6,
+            "free_kv_after_raw": 538,
+            "evictable_after_raw": 0,
+            "waiting_after": 6
+          }
+        ]
+      }
+    },
+    {
+      "case": "v17_trace_ab",
+      "root": "gpu_ablation_v17_seed1911_audit_v2",
+      "name": "01_peek_trace_r1_attempt01",
+      "config_type": "no_chunk",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30172"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 311
+      },
+      "goodput_req_per_s": 5.976771546656593,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2282.028,
+        "p95_ttft_ms": 7727.089,
+        "p99_ttft_ms": 10641.914,
+        "ttft_ge_2000": 201
+      },
+      "trace": {
+        "has_trace": true,
+        "trace_files": [
+          {
+            "name": "gpu_ablation_v17_seed1911_audit_v2/runs/01_peek_trace_r1_attempt01/runtime/peek_audit_156533.jsonl",
+            "bytes": 1337647,
+            "sha256": "5448b4c9f2aeb2e07917dcda725653b8d4c18c00fa61b22a63bb9c71ec5a4eff"
+          }
+        ],
+        "event_counts": {
+          "sort": 340,
+          "prefill_batch": 287,
+          "cache_evict": 283
+        },
+        "fields": {
+          "sort": [
+            "kind",
+            "n",
+            "proposal_rid",
+            "queue",
+            "sort_tick",
+            "t"
+          ],
+          "prefill_batch": [
+            "admitted",
+            "admitted_count",
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "sort_tick",
+            "t",
+            "waiting_count_after",
+            "waiting_count_before"
+          ],
+          "cache_evict": [
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "preexisting_leaf_diff_count",
+            "removed_kv_tokens",
+            "removed_nodes",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ]
+        },
+        "sort_ticks_observed": 340,
+        "nonempty_prefill_ticks": 287,
+        "sort_ticks_no_prefill_record": 53,
+        "sort_tick_without_nonempty_prefill_sample": [
+          7,
+          14,
+          24,
+          37,
+          46,
+          48,
+          52,
+          54,
+          58,
+          73
+        ],
+        "sort_unique_request_rids": 578,
+        "sort_rid_scored_client_join": 512,
+        "admitted_rid_scored_client_join": 512,
+        "trace_extra_requests": 66,
+        "prefill_ticks_with_raw_free_kv_after_gt0": 287,
+        "prefill_ticks_with_unadmitted_sort_candidate": 282,
+        "prefill_ticks_with_nonempty_sort_suffix": 282,
+        "not_admitted_candidate_rid_occurrences": 6202,
+        "distinct_scored_candidate_rids": 448,
+        "repeated_candidate_occurrences_excluding_first": 5754,
+        "candidate_ttft_ge2000_distinct": 201,
+        "scored_ttft_ge2000": 201,
+        "raw_allocator_proxy_screen_events": 424,
+        "raw_allocator_proxy_screen_distinct": 153,
+        "naive_complete_512_and_raw_free_proxy_events": 2,
+        "naive_complete_512_and_raw_free_proxy_rids": 2,
+        "raw_free_proxy_not_safe_admission": true,
+        "native_admission_slack_confirmed": null,
+        "complete_prompt_prefill_confirmed": null,
+        "zero_extra_eviction_confirmed": null,
+        "future_kv_and_batch_time_confirmed": null,
+        "eviction_events": 283,
+        "eviction_deleted_kv_tokens": 393306,
+        "shadow_validation_events": 0,
+        "shadow_validation_matches": 0,
+        "per_tick_illustrative_rows": [
+          {
+            "tick": 5,
+            "sort_queue_count": 3,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 3034,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 6,
+            "sort_queue_count": 4,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 989,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 8,
+            "sort_queue_count": 16,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 13,
+            "free_kv_after_raw": 546,
+            "evictable_after_raw": 4566,
+            "waiting_after": 13
+          },
+          {
+            "tick": 9,
+            "sort_queue_count": 13,
+            "admitted_count": 4,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 804,
+            "evictable_after_raw": 2260,
+            "waiting_after": 9
+          },
+          {
+            "tick": 10,
+            "sort_queue_count": 9,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 1257,
+            "evictable_after_raw": 2,
+            "waiting_after": 7
+          },
+          {
+            "tick": 11,
+            "sort_queue_count": 13,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 10,
+            "free_kv_after_raw": 2468,
+            "evictable_after_raw": 2644,
+            "waiting_after": 10
+          },
+          {
+            "tick": 12,
+            "sort_queue_count": 10,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 420,
+            "evictable_after_raw": 2644,
+            "waiting_after": 8
+          },
+          {
+            "tick": 13,
+            "sort_queue_count": 9,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 6,
+            "free_kv_after_raw": 1014,
+            "evictable_after_raw": 2,
+            "waiting_after": 6
+          },
+          {
+            "tick": 15,
+            "sort_queue_count": 13,
+            "admitted_count": 5,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 520,
+            "evictable_after_raw": 2532,
+            "waiting_after": 8
+          },
+          {
+            "tick": 16,
+            "sort_queue_count": 8,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 5,
+            "free_kv_after_raw": 965,
+            "evictable_after_raw": 39,
+            "waiting_after": 5
+          },
+          {
+            "tick": 17,
+            "sort_queue_count": 6,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 5,
+            "free_kv_after_raw": 579,
+            "evictable_after_raw": 39,
+            "waiting_after": 5
+          },
+          {
+            "tick": 18,
+            "sort_queue_count": 17,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 14,
+            "free_kv_after_raw": 439,
+            "evictable_after_raw": 4673,
+            "waiting_after": 14
+          }
+        ]
+      }
+    },
+    {
+      "case": "v17_trace_ab",
+      "root": "gpu_ablation_v17_seed1911_audit_v2",
+      "name": "02_kv_audit_r1_attempt01",
+      "config_type": "no_chunk",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30172"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 321
+      },
+      "goodput_req_per_s": 6.156703922235166,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2202.561,
+        "p95_ttft_ms": 7299.594,
+        "p99_ttft_ms": 11338.851,
+        "ttft_ge_2000": 191
+      },
+      "trace": {
+        "has_trace": true,
+        "trace_files": [
+          {
+            "name": "gpu_ablation_v17_seed1911_audit_v2/runs/02_kv_audit_r1_attempt01/runtime/peek_audit_157688.jsonl",
+            "bytes": 1345625,
+            "sha256": "dceb2a36db26a9a329d908b18dbc7b1fc40c991f12dea71910a5eb9ed9e7e4f3"
+          }
+        ],
+        "event_counts": {
+          "sort": 351,
+          "prefill_batch": 290,
+          "cache_evict": 278,
+          "promotion_proposal": 13
+        },
+        "fields": {
+          "sort": [
+            "kind",
+            "n",
+            "proposal_rid",
+            "queue",
+            "sort_tick",
+            "t"
+          ],
+          "prefill_batch": [
+            "admitted",
+            "admitted_count",
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "sort_tick",
+            "t",
+            "waiting_count_after",
+            "waiting_count_before"
+          ],
+          "cache_evict": [
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "preexisting_leaf_diff_count",
+            "removed_kv_tokens",
+            "removed_nodes",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ],
+          "promotion_proposal": [
+            "debt_tokens",
+            "incremental_tokens",
+            "kind",
+            "n",
+            "reason",
+            "rid",
+            "sort_tick",
+            "t"
+          ]
+        },
+        "sort_ticks_observed": 351,
+        "nonempty_prefill_ticks": 290,
+        "sort_ticks_no_prefill_record": 61,
+        "sort_tick_without_nonempty_prefill_sample": [
+          5,
+          7,
+          9,
+          27,
+          31,
+          38,
+          52,
+          70,
+          74,
+          86
+        ],
+        "sort_unique_request_rids": 578,
+        "sort_rid_scored_client_join": 512,
+        "admitted_rid_scored_client_join": 512,
+        "trace_extra_requests": 66,
+        "prefill_ticks_with_raw_free_kv_after_gt0": 290,
+        "prefill_ticks_with_unadmitted_sort_candidate": 284,
+        "prefill_ticks_with_nonempty_sort_suffix": 284,
+        "not_admitted_candidate_rid_occurrences": 5942,
+        "distinct_scored_candidate_rids": 458,
+        "repeated_candidate_occurrences_excluding_first": 5484,
+        "candidate_ttft_ge2000_distinct": 191,
+        "scored_ttft_ge2000": 191,
+        "raw_allocator_proxy_screen_events": 468,
+        "raw_allocator_proxy_screen_distinct": 122,
+        "naive_complete_512_and_raw_free_proxy_events": 3,
+        "naive_complete_512_and_raw_free_proxy_rids": 3,
+        "raw_free_proxy_not_safe_admission": true,
+        "native_admission_slack_confirmed": null,
+        "complete_prompt_prefill_confirmed": null,
+        "zero_extra_eviction_confirmed": null,
+        "future_kv_and_batch_time_confirmed": null,
+        "eviction_events": 278,
+        "eviction_deleted_kv_tokens": 394035,
+        "shadow_validation_events": 0,
+        "shadow_validation_matches": 0,
+        "per_tick_illustrative_rows": [
+          {
+            "tick": 8,
+            "sort_queue_count": 3,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 871,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 10,
+            "sort_queue_count": 16,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 13,
+            "free_kv_after_raw": 546,
+            "evictable_after_raw": 4566,
+            "waiting_after": 13
+          },
+          {
+            "tick": 11,
+            "sort_queue_count": 13,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 11,
+            "free_kv_after_raw": 804,
+            "evictable_after_raw": 2260,
+            "waiting_after": 11
+          },
+          {
+            "tick": 12,
+            "sort_queue_count": 11,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 1821,
+            "evictable_after_raw": 2,
+            "waiting_after": 8
+          },
+          {
+            "tick": 13,
+            "sort_queue_count": 8,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 1267,
+            "evictable_after_raw": 2,
+            "waiting_after": 7
+          },
+          {
+            "tick": 14,
+            "sort_queue_count": 14,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 11,
+            "free_kv_after_raw": 2185,
+            "evictable_after_raw": 2927,
+            "waiting_after": 11
+          },
+          {
+            "tick": 15,
+            "sort_queue_count": 11,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 137,
+            "evictable_after_raw": 2927,
+            "waiting_after": 9
+          },
+          {
+            "tick": 16,
+            "sort_queue_count": 11,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 1014,
+            "evictable_after_raw": 2,
+            "waiting_after": 8
+          },
+          {
+            "tick": 17,
+            "sort_queue_count": 10,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 9,
+            "free_kv_after_raw": 705,
+            "evictable_after_raw": 2,
+            "waiting_after": 9
+          },
+          {
+            "tick": 18,
+            "sort_queue_count": 14,
+            "admitted_count": 4,
+            "not_admitted_in_sort": 10,
+            "free_kv_after_raw": 541,
+            "evictable_after_raw": 3540,
+            "waiting_after": 10
+          },
+          {
+            "tick": 19,
+            "sort_queue_count": 10,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 865,
+            "evictable_after_raw": 1168,
+            "waiting_after": 7
+          },
+          {
+            "tick": 20,
+            "sort_queue_count": 8,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 6,
+            "free_kv_after_raw": 538,
+            "evictable_after_raw": 0,
+            "waiting_after": 6
+          }
+        ]
+      }
+    },
+    {
+      "case": "v21_native_shadow",
+      "root": "gpu_ablation_v21_seed1911_native_shadow",
+      "name": "01_peek_shadow_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30182",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 307
+      },
+      "goodput_req_per_s": 5.901219781927053,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2539.583,
+        "p95_ttft_ms": 9780.695,
+        "p99_ttft_ms": 12904.816,
+        "ttft_ge_2000": 205
+      },
+      "trace": {
+        "has_trace": true,
+        "trace_files": [
+          {
+            "name": "gpu_ablation_v21_seed1911_native_shadow/runs/01_peek_shadow_r1_attempt01/runtime/peek_audit_207338.jsonl",
+            "bytes": 4189057,
+            "sha256": "1d896cf830ef1a09fc1b8adb4e46b1e345f13b961d6366db04aa2308025658eb"
+          }
+        ],
+        "event_counts": {
+          "sort": 1036,
+          "prefill_batch": 445,
+          "shadow_native_validation": 631,
+          "cache_evict": 631
+        },
+        "fields": {
+          "sort": [
+            "kind",
+            "n",
+            "proposal_rid",
+            "queue",
+            "sort_tick",
+            "t"
+          ],
+          "prefill_batch": [
+            "admitted",
+            "admitted_count",
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "sort_tick",
+            "t",
+            "waiting_count_after",
+            "waiting_count_before"
+          ],
+          "shadow_native_validation": [
+            "actual_nodes",
+            "exact_order_match",
+            "kind",
+            "n",
+            "predicted_nodes",
+            "prediction_error",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ],
+          "cache_evict": [
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "preexisting_leaf_diff_count",
+            "removed_kv_tokens",
+            "removed_nodes",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ]
+        },
+        "sort_ticks_observed": 1036,
+        "nonempty_prefill_ticks": 445,
+        "sort_ticks_no_prefill_record": 591,
+        "sort_tick_without_nonempty_prefill_sample": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          17,
+          18,
+          20
+        ],
+        "sort_unique_request_rids": 578,
+        "sort_rid_scored_client_join": 512,
+        "admitted_rid_scored_client_join": 512,
+        "trace_extra_requests": 66,
+        "prefill_ticks_with_raw_free_kv_after_gt0": 444,
+        "prefill_ticks_with_unadmitted_sort_candidate": 441,
+        "prefill_ticks_with_nonempty_sort_suffix": 441,
+        "not_admitted_candidate_rid_occurrences": 10794,
+        "distinct_scored_candidate_rids": 460,
+        "repeated_candidate_occurrences_excluding_first": 10334,
+        "candidate_ttft_ge2000_distinct": 205,
+        "scored_ttft_ge2000": 205,
+        "raw_allocator_proxy_screen_events": 6,
+        "raw_allocator_proxy_screen_distinct": 6,
+        "naive_complete_512_and_raw_free_proxy_events": 5,
+        "naive_complete_512_and_raw_free_proxy_rids": 5,
+        "raw_free_proxy_not_safe_admission": true,
+        "native_admission_slack_confirmed": null,
+        "complete_prompt_prefill_confirmed": null,
+        "zero_extra_eviction_confirmed": null,
+        "future_kv_and_batch_time_confirmed": null,
+        "eviction_events": 631,
+        "eviction_deleted_kv_tokens": 363881,
+        "shadow_validation_events": 631,
+        "shadow_validation_matches": 631,
+        "per_tick_illustrative_rows": [
+          {
+            "tick": 5,
+            "sort_queue_count": 2,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 6640,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 7,
+            "sort_queue_count": 2,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 5616,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 9,
+            "sort_queue_count": 2,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 4592,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 11,
+            "sort_queue_count": 2,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 3568,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 13,
+            "sort_queue_count": 3,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 2544,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 15,
+            "sort_queue_count": 3,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 1520,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 19,
+            "sort_queue_count": 16,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 14,
+            "free_kv_after_raw": 484,
+            "evictable_after_raw": 509,
+            "waiting_after": 14
+          },
+          {
+            "tick": 21,
+            "sort_queue_count": 14,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 12,
+            "free_kv_after_raw": 60,
+            "evictable_after_raw": 1061,
+            "waiting_after": 12
+          },
+          {
+            "tick": 22,
+            "sort_queue_count": 12,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 11,
+            "free_kv_after_raw": 122,
+            "evictable_after_raw": 1606,
+            "waiting_after": 11
+          },
+          {
+            "tick": 24,
+            "sort_queue_count": 11,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 527,
+            "evictable_after_raw": 1468,
+            "waiting_after": 8
+          },
+          {
+            "tick": 28,
+            "sort_queue_count": 8,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 460,
+            "evictable_after_raw": 1410,
+            "waiting_after": 7
+          },
+          {
+            "tick": 30,
+            "sort_queue_count": 8,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 108,
+            "evictable_after_raw": 1861,
+            "waiting_after": 7
+          }
+        ]
+      }
+    },
+    {
+      "case": "v21_native_shadow",
+      "root": "gpu_ablation_v21_seed1911_native_shadow",
+      "name": "02_ticket_shadow_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30182",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 272
+      },
+      "goodput_req_per_s": 5.138925319693496,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2887.494,
+        "p95_ttft_ms": 8860.159,
+        "p99_ttft_ms": 11931.045,
+        "ttft_ge_2000": 240
+      },
+      "trace": {
+        "has_trace": true,
+        "trace_files": [
+          {
+            "name": "gpu_ablation_v21_seed1911_native_shadow/runs/02_ticket_shadow_r1_attempt01/runtime/peek_audit_208535.jsonl",
+            "bytes": 4633507,
+            "sha256": "de5151cfdbdf27d58e1b758f0edcbbfa146da9c4330b05a1cf0d7a87c7aa783c"
+          }
+        ],
+        "event_counts": {
+          "sort": 1036,
+          "prefill_batch": 482,
+          "shadow_native_validation": 622,
+          "cache_evict": 622,
+          "promotion_proposal": 474
+        },
+        "fields": {
+          "sort": [
+            "kind",
+            "n",
+            "proposal_rid",
+            "queue",
+            "sort_tick",
+            "t"
+          ],
+          "prefill_batch": [
+            "admitted",
+            "admitted_count",
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "sort_tick",
+            "t",
+            "waiting_count_after",
+            "waiting_count_before"
+          ],
+          "shadow_native_validation": [
+            "actual_nodes",
+            "exact_order_match",
+            "kind",
+            "n",
+            "predicted_nodes",
+            "prediction_error",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ],
+          "cache_evict": [
+            "evictable_after",
+            "evictable_before",
+            "free_kv_after",
+            "free_kv_before",
+            "kind",
+            "n",
+            "preexisting_leaf_diff_count",
+            "removed_kv_tokens",
+            "removed_nodes",
+            "requested_tokens",
+            "sort_tick",
+            "t"
+          ],
+          "promotion_proposal": [
+            "debt_tokens",
+            "incremental_tokens",
+            "kind",
+            "n",
+            "reason",
+            "rid",
+            "sort_tick",
+            "t"
+          ]
+        },
+        "sort_ticks_observed": 1036,
+        "nonempty_prefill_ticks": 482,
+        "sort_ticks_no_prefill_record": 554,
+        "sort_tick_without_nonempty_prefill_sample": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          17,
+          18,
+          20
+        ],
+        "sort_unique_request_rids": 578,
+        "sort_rid_scored_client_join": 512,
+        "admitted_rid_scored_client_join": 512,
+        "trace_extra_requests": 66,
+        "prefill_ticks_with_raw_free_kv_after_gt0": 480,
+        "prefill_ticks_with_unadmitted_sort_candidate": 478,
+        "prefill_ticks_with_nonempty_sort_suffix": 478,
+        "not_admitted_candidate_rid_occurrences": 13231,
+        "distinct_scored_candidate_rids": 475,
+        "repeated_candidate_occurrences_excluding_first": 12756,
+        "candidate_ttft_ge2000_distinct": 240,
+        "scored_ttft_ge2000": 240,
+        "raw_allocator_proxy_screen_events": 74,
+        "raw_allocator_proxy_screen_distinct": 54,
+        "naive_complete_512_and_raw_free_proxy_events": 73,
+        "naive_complete_512_and_raw_free_proxy_rids": 53,
+        "raw_free_proxy_not_safe_admission": true,
+        "native_admission_slack_confirmed": null,
+        "complete_prompt_prefill_confirmed": null,
+        "zero_extra_eviction_confirmed": null,
+        "future_kv_and_batch_time_confirmed": null,
+        "eviction_events": 622,
+        "eviction_deleted_kv_tokens": 359423,
+        "shadow_validation_events": 622,
+        "shadow_validation_matches": 622,
+        "per_tick_illustrative_rows": [
+          {
+            "tick": 5,
+            "sort_queue_count": 2,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 6640,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 7,
+            "sort_queue_count": 3,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 5616,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 9,
+            "sort_queue_count": 2,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 1,
+            "free_kv_after_raw": 4592,
+            "evictable_after_raw": 16,
+            "waiting_after": 1
+          },
+          {
+            "tick": 11,
+            "sort_queue_count": 3,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 3568,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 13,
+            "sort_queue_count": 3,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 2544,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 15,
+            "sort_queue_count": 3,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 2,
+            "free_kv_after_raw": 1520,
+            "evictable_after_raw": 16,
+            "waiting_after": 2
+          },
+          {
+            "tick": 19,
+            "sort_queue_count": 16,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 14,
+            "free_kv_after_raw": 484,
+            "evictable_after_raw": 509,
+            "waiting_after": 14
+          },
+          {
+            "tick": 21,
+            "sort_queue_count": 14,
+            "admitted_count": 2,
+            "not_admitted_in_sort": 12,
+            "free_kv_after_raw": 60,
+            "evictable_after_raw": 1061,
+            "waiting_after": 12
+          },
+          {
+            "tick": 22,
+            "sort_queue_count": 12,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 11,
+            "free_kv_after_raw": 122,
+            "evictable_after_raw": 1606,
+            "waiting_after": 11
+          },
+          {
+            "tick": 24,
+            "sort_queue_count": 11,
+            "admitted_count": 3,
+            "not_admitted_in_sort": 8,
+            "free_kv_after_raw": 527,
+            "evictable_after_raw": 1468,
+            "waiting_after": 8
+          },
+          {
+            "tick": 28,
+            "sort_queue_count": 8,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 7,
+            "free_kv_after_raw": 460,
+            "evictable_after_raw": 1410,
+            "waiting_after": 7
+          },
+          {
+            "tick": 30,
+            "sort_queue_count": 7,
+            "admitted_count": 1,
+            "not_admitted_in_sort": 6,
+            "free_kv_after_raw": 108,
+            "evictable_after_raw": 1861,
+            "waiting_after": 6
+          }
+        ]
+      }
+    },
+    {
+      "case": "v21_victim",
+      "root": "gpu_ablation_v21_seed1911_victim_ticket",
+      "name": "01_peek_chunk_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30183",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 345
+      },
+      "goodput_req_per_s": 6.729852932168707,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1826.284,
+        "p95_ttft_ms": 5843.052,
+        "p99_ttft_ms": 9362.581,
+        "ttft_ge_2000": 167
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v21_victim",
+      "root": "gpu_ablation_v21_seed1911_victim_ticket",
+      "name": "02_victim_ticket_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30183",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 331
+      },
+      "goodput_req_per_s": 6.410791278521725,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2020.651,
+        "p95_ttft_ms": 6613.179,
+        "p99_ttft_ms": 8383.503,
+        "ttft_ge_2000": 181
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v21_victim",
+      "root": "gpu_ablation_v21_seed1911_victim_ticket",
+      "name": "03_victim_ticket_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30183",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 325
+      },
+      "goodput_req_per_s": 6.2683549376297485,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2033.219,
+        "p95_ttft_ms": 6814.672,
+        "p99_ttft_ms": 8495.565,
+        "ttft_ge_2000": 187
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v21_victim",
+      "root": "gpu_ablation_v21_seed1911_victim_ticket",
+      "name": "04_peek_chunk_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30183",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 341
+      },
+      "goodput_req_per_s": 6.611053491036713,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1862.932,
+        "p95_ttft_ms": 6536.536,
+        "p99_ttft_ms": 10724.06,
+        "ttft_ge_2000": 171
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1911",
+      "root": "gpu_ablation_v22_seed1911_crosssection_chunk",
+      "name": "01_peek_full_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30196",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 340
+      },
+      "goodput_req_per_s": 6.612170333792482,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1894.254,
+        "p95_ttft_ms": 5810.753,
+        "p99_ttft_ms": 10700.901,
+        "ttft_ge_2000": 172
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1911",
+      "root": "gpu_ablation_v22_seed1911_crosssection_chunk",
+      "name": "02_cross_section_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30196",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 331
+      },
+      "goodput_req_per_s": 6.463222111412358,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1906.915,
+        "p95_ttft_ms": 6438.716,
+        "p99_ttft_ms": 10547.352,
+        "ttft_ge_2000": 181
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1911",
+      "root": "gpu_ablation_v22_seed1911_crosssection_chunk",
+      "name": "03_cross_section_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30196",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 354
+      },
+      "goodput_req_per_s": 6.877551881970306,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1821.546,
+        "p95_ttft_ms": 5781.98,
+        "p99_ttft_ms": 8794.524,
+        "ttft_ge_2000": 158
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1911",
+      "root": "gpu_ablation_v22_seed1911_crosssection_chunk",
+      "name": "04_peek_full_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30196",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 354
+      },
+      "goodput_req_per_s": 6.843987329320377,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1841.422,
+        "p95_ttft_ms": 6063.539,
+        "p99_ttft_ms": 10023.904,
+        "ttft_ge_2000": 158
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1711",
+      "root": "gpu_ablation_v22_seed1711_crosssection_chunk",
+      "name": "01_peek_full_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30197",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 364
+      },
+      "goodput_req_per_s": 6.931114731157347,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1828.204,
+        "p95_ttft_ms": 6263.63,
+        "p99_ttft_ms": 14446.332,
+        "ttft_ge_2000": 148
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1711",
+      "root": "gpu_ablation_v22_seed1711_crosssection_chunk",
+      "name": "02_cross_section_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30197",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 358
+      },
+      "goodput_req_per_s": 6.831163478844936,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1813.374,
+        "p95_ttft_ms": 6043.251,
+        "p99_ttft_ms": 14354.138,
+        "ttft_ge_2000": 154
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1711",
+      "root": "gpu_ablation_v22_seed1711_crosssection_chunk",
+      "name": "03_cross_section_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30197",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 357
+      },
+      "goodput_req_per_s": 6.7978914447945105,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1749.546,
+        "p95_ttft_ms": 6023.484,
+        "p99_ttft_ms": 12507.667,
+        "ttft_ge_2000": 155
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_cross_1711",
+      "root": "gpu_ablation_v22_seed1711_crosssection_chunk",
+      "name": "04_peek_full_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30197",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 365
+      },
+      "goodput_req_per_s": 6.982183698767954,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1689.844,
+        "p95_ttft_ms": 5119.435,
+        "p99_ttft_ms": 14051.237,
+        "ttft_ge_2000": 147
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_quick_1911",
+      "root": "gpu_ablation_v22_seed1911_quickdemote_chunk",
+      "name": "01_peek_full_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30198",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 339
+      },
+      "goodput_req_per_s": 6.527287191051067,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1947.211,
+        "p95_ttft_ms": 6421.9,
+        "p99_ttft_ms": 11402.961,
+        "ttft_ge_2000": 173
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_quick_1911",
+      "root": "gpu_ablation_v22_seed1911_quickdemote_chunk",
+      "name": "02_quickdemote_r1_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30198",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 343
+      },
+      "goodput_req_per_s": 6.649814046547449,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1884.601,
+        "p95_ttft_ms": 6473.629,
+        "p99_ttft_ms": 10481.856,
+        "ttft_ge_2000": 169
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_quick_1911",
+      "root": "gpu_ablation_v22_seed1911_quickdemote_chunk",
+      "name": "03_quickdemote_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30198",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 346
+      },
+      "goodput_req_per_s": 6.680636007334243,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 2003.177,
+        "p95_ttft_ms": 7652.658,
+        "p99_ttft_ms": 11348.344,
+        "ttft_ge_2000": 166
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    },
+    {
+      "case": "v22_quick_1911",
+      "root": "gpu_ablation_v22_seed1911_quickdemote_chunk",
+      "name": "04_peek_full_r2_attempt01",
+      "config_type": "chunk512",
+      "historical_head": "6fbf2205f1c8bc6fe55746d75860e23779b003a2",
+      "server_command": [
+        "/root/bayes-tmp/peek/.venv/bin/python",
+        "-m",
+        "sglang.launch_server",
+        "--model-path",
+        "/root/bayes-tmp/kvcache/models/Qwen2.5-3B-Instruct",
+        "--dtype",
+        "bfloat16",
+        "--tp-size",
+        "1",
+        "--schedule-policy",
+        "lpm",
+        "--enable-cache-report",
+        "--mem-fraction-static",
+        "0.75",
+        "--max-total-tokens",
+        "8192",
+        "--random-seed",
+        "950056913",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "30198",
+        "--chunked-prefill-size",
+        "512",
+        "--enable-mixed-chunk"
+      ],
+      "counts": {
+        "submitted": 576,
+        "after_warmup": 512,
+        "ok": 512,
+        "errored": 0,
+        "bad_ttft": 0,
+        "slo_met": 352
+      },
+      "goodput_req_per_s": 6.842392506481898,
+      "metrics": {
+        "scored": 512,
+        "mean_ttft_ms": 1872.873,
+        "p95_ttft_ms": 6363.066,
+        "p99_ttft_ms": 10706.874,
+        "ttft_ge_2000": 160
+      },
+      "trace": {
+        "has_trace": false,
+        "reason": "No nonempty audit JSONL"
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "case": "v17_peek_aa",
+      "comparison": "PEEK r1 -> PEEK r2 (A/A)",
+      "a": "01_peek_trace_r1_attempt01",
+      "b": "02_peek_trace_r2_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": -72.56,
+          "p05": -935.949,
+          "p50": -20.868,
+          "p95": 881.779
+        },
+        "b_faster_by_500ms": 66,
+        "b_slower_by_500ms": 42,
+        "b_faster_by_1000ms": 23,
+        "b_slower_by_1000ms": 25,
+        "cache_token_delta_mean": -8.699,
+        "a_high_hit_512_count": 223,
+        "a_high_hit_to_b_low_hit_32": 22,
+        "collapse_request_indices_sample": [
+          142,
+          180,
+          182,
+          233,
+          295,
+          313,
+          317,
+          319,
+          351,
+          383,
+          408,
+          423
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 478,
+            "delta_ttft_ms": 7170.712,
+            "a_hit": 1033,
+            "b_hit": 3
+          },
+          {
+            "req_id": 472,
+            "delta_ttft_ms": 5994.041,
+            "a_hit": 1032,
+            "b_hit": 5
+          },
+          {
+            "req_id": 317,
+            "delta_ttft_ms": 5520.163,
+            "a_hit": 1033,
+            "b_hit": 3
+          },
+          {
+            "req_id": 319,
+            "delta_ttft_ms": 5415.041,
+            "a_hit": 1032,
+            "b_hit": 3
+          },
+          {
+            "req_id": 383,
+            "delta_ttft_ms": 4989.788,
+            "a_hit": 1033,
+            "b_hit": 3
+          },
+          {
+            "req_id": 508,
+            "delta_ttft_ms": 4957.206,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 229,
+            "delta_ttft_ms": 4453.243,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 574,
+            "delta_ttft_ms": 3410.355,
+            "a_hit": 1032,
+            "b_hit": 5
+          },
+          {
+            "req_id": 323,
+            "delta_ttft_ms": 3069.219,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 550,
+            "delta_ttft_ms": 3007.301,
+            "a_hit": 1033,
+            "b_hit": 3
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 207,
+            "delta_ttft_ms": -15751.277,
+            "a_hit": 5,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 427,
+            "delta_ttft_ms": -6501.339,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 252,
+            "delta_ttft_ms": -6132.952,
+            "a_hit": 3,
+            "b_hit": 1033
+          },
+          {
+            "req_id": 394,
+            "delta_ttft_ms": -5848.905,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 476,
+            "delta_ttft_ms": -5481.199,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 416,
+            "delta_ttft_ms": -5277.882,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 131,
+            "delta_ttft_ms": -4748.337,
+            "a_hit": 4,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 442,
+            "delta_ttft_ms": -4615.767,
+            "a_hit": 3,
+            "b_hit": 955
+          },
+          {
+            "req_id": 519,
+            "delta_ttft_ms": -3542.663,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 572,
+            "delta_ttft_ms": -3078.922,
+            "a_hit": 3,
+            "b_hit": 1032
+          }
+        ]
+      }
+    },
+    {
+      "case": "v17_trace_ab",
+      "comparison": "PEEK trace -> v16 trace (observational 2 arms)",
+      "a": "01_peek_trace_r1_attempt01",
+      "b": "02_kv_audit_r1_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": -79.467,
+          "p05": -1932.153,
+          "p50": -54.051,
+          "p95": 2371.112
+        },
+        "b_faster_by_500ms": 96,
+        "b_slower_by_500ms": 54,
+        "b_faster_by_1000ms": 47,
+        "b_slower_by_1000ms": 35,
+        "cache_token_delta_mean": -1.371,
+        "a_high_hit_512_count": 220,
+        "a_high_hit_to_b_low_hit_32": 30,
+        "collapse_request_indices_sample": [
+          138,
+          142,
+          151,
+          166,
+          180,
+          228,
+          233,
+          244,
+          269,
+          342,
+          357,
+          386
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 90,
+            "delta_ttft_ms": 10686.65,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 218,
+            "delta_ttft_ms": 10253.833,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 451,
+            "delta_ttft_ms": 10033.575,
+            "a_hit": 1041,
+            "b_hit": 5
+          },
+          {
+            "req_id": 195,
+            "delta_ttft_ms": 9309.775,
+            "a_hit": 6,
+            "b_hit": 3
+          },
+          {
+            "req_id": 75,
+            "delta_ttft_ms": 7658.888,
+            "a_hit": 4,
+            "b_hit": 3
+          },
+          {
+            "req_id": 460,
+            "delta_ttft_ms": 6118.33,
+            "a_hit": 1032,
+            "b_hit": 3
+          },
+          {
+            "req_id": 537,
+            "delta_ttft_ms": 6040.551,
+            "a_hit": 1032,
+            "b_hit": 5
+          },
+          {
+            "req_id": 205,
+            "delta_ttft_ms": 5649.744,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 482,
+            "delta_ttft_ms": 5616.766,
+            "a_hit": 1033,
+            "b_hit": 3
+          },
+          {
+            "req_id": 508,
+            "delta_ttft_ms": 4998.557,
+            "a_hit": 1032,
+            "b_hit": 3
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 356,
+            "delta_ttft_ms": -9612.966,
+            "a_hit": 3,
+            "b_hit": 1033
+          },
+          {
+            "req_id": 434,
+            "delta_ttft_ms": -8949.371,
+            "a_hit": 3,
+            "b_hit": 5
+          },
+          {
+            "req_id": 333,
+            "delta_ttft_ms": -8382.216,
+            "a_hit": 3,
+            "b_hit": 1042
+          },
+          {
+            "req_id": 507,
+            "delta_ttft_ms": -8101.568,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 275,
+            "delta_ttft_ms": -7124.987,
+            "a_hit": 5,
+            "b_hit": 1044
+          },
+          {
+            "req_id": 427,
+            "delta_ttft_ms": -6784.532,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 450,
+            "delta_ttft_ms": -6259.845,
+            "a_hit": 6,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 532,
+            "delta_ttft_ms": -6149.879,
+            "a_hit": 5,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 327,
+            "delta_ttft_ms": -5792.335,
+            "a_hit": 5,
+            "b_hit": 995
+          },
+          {
+            "req_id": 548,
+            "delta_ttft_ms": -5117.854,
+            "a_hit": 5,
+            "b_hit": 1032
+          }
+        ]
+      }
+    },
+    {
+      "case": "v21_native_shadow",
+      "comparison": "PEEK shadow -> ticket shadow (not an A/A)",
+      "a": "01_peek_shadow_r1_attempt01",
+      "b": "02_ticket_shadow_r1_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": 347.912,
+          "p05": -3818.4,
+          "p50": 198.659,
+          "p95": 4362.543
+        },
+        "b_faster_by_500ms": 90,
+        "b_slower_by_500ms": 182,
+        "b_faster_by_1000ms": 74,
+        "b_slower_by_1000ms": 145,
+        "cache_token_delta_mean": 18.988,
+        "a_high_hit_512_count": 245,
+        "a_high_hit_to_b_low_hit_32": 37,
+        "collapse_request_indices_sample": [
+          103,
+          113,
+          128,
+          129,
+          154,
+          161,
+          182,
+          185,
+          192,
+          233,
+          240,
+          258
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 258,
+            "delta_ttft_ms": 11687.3,
+            "a_hit": 1011,
+            "b_hit": 3
+          },
+          {
+            "req_id": 356,
+            "delta_ttft_ms": 9660.924,
+            "a_hit": 1010,
+            "b_hit": 3
+          },
+          {
+            "req_id": 464,
+            "delta_ttft_ms": 8689.19,
+            "a_hit": 1032,
+            "b_hit": 3
+          },
+          {
+            "req_id": 275,
+            "delta_ttft_ms": 8616.697,
+            "a_hit": 991,
+            "b_hit": 3
+          },
+          {
+            "req_id": 393,
+            "delta_ttft_ms": 8395.754,
+            "a_hit": 1009,
+            "b_hit": 3
+          },
+          {
+            "req_id": 499,
+            "delta_ttft_ms": 8103.588,
+            "a_hit": 935,
+            "b_hit": 3
+          },
+          {
+            "req_id": 240,
+            "delta_ttft_ms": 7946.11,
+            "a_hit": 1013,
+            "b_hit": 4
+          },
+          {
+            "req_id": 544,
+            "delta_ttft_ms": 7066.58,
+            "a_hit": 912,
+            "b_hit": 5
+          },
+          {
+            "req_id": 391,
+            "delta_ttft_ms": 6715.801,
+            "a_hit": 1032,
+            "b_hit": 3
+          },
+          {
+            "req_id": 103,
+            "delta_ttft_ms": 6348.508,
+            "a_hit": 1032,
+            "b_hit": 5
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 223,
+            "delta_ttft_ms": -16362.615,
+            "a_hit": 3,
+            "b_hit": 1007
+          },
+          {
+            "req_id": 207,
+            "delta_ttft_ms": -15845.446,
+            "a_hit": 4,
+            "b_hit": 6
+          },
+          {
+            "req_id": 415,
+            "delta_ttft_ms": -11764.851,
+            "a_hit": 3,
+            "b_hit": 1048
+          },
+          {
+            "req_id": 466,
+            "delta_ttft_ms": -9718.154,
+            "a_hit": 3,
+            "b_hit": 1006
+          },
+          {
+            "req_id": 332,
+            "delta_ttft_ms": -9536.21,
+            "a_hit": 3,
+            "b_hit": 765
+          },
+          {
+            "req_id": 381,
+            "delta_ttft_ms": -9172.455,
+            "a_hit": 3,
+            "b_hit": 1006
+          },
+          {
+            "req_id": 513,
+            "delta_ttft_ms": -8114.5,
+            "a_hit": 3,
+            "b_hit": 486
+          },
+          {
+            "req_id": 222,
+            "delta_ttft_ms": -6465.041,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 195,
+            "delta_ttft_ms": -6234.795,
+            "a_hit": 3,
+            "b_hit": 5
+          },
+          {
+            "req_id": 90,
+            "delta_ttft_ms": -6232.969,
+            "a_hit": 5,
+            "b_hit": 4
+          }
+        ]
+      }
+    },
+    {
+      "case": "v21_victim",
+      "comparison": "PEEK matched vs Extension",
+      "a": "01_peek_chunk_r1_attempt01",
+      "b": "02_victim_ticket_r1_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": 194.367,
+          "p05": -2535.473,
+          "p50": 42.664,
+          "p95": 3372.701
+        },
+        "b_faster_by_500ms": 65,
+        "b_slower_by_500ms": 115,
+        "b_faster_by_1000ms": 48,
+        "b_slower_by_1000ms": 76,
+        "cache_token_delta_mean": -2.283,
+        "a_high_hit_512_count": 198,
+        "a_high_hit_to_b_low_hit_32": 29,
+        "collapse_request_indices_sample": [
+          77,
+          81,
+          161,
+          182,
+          189,
+          230,
+          327,
+          329,
+          337,
+          356,
+          377,
+          383
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 180,
+            "delta_ttft_ms": 9890.153,
+            "a_hit": 6,
+            "b_hit": 6
+          },
+          {
+            "req_id": 177,
+            "delta_ttft_ms": 9111.352,
+            "a_hit": 4,
+            "b_hit": 3
+          },
+          {
+            "req_id": 377,
+            "delta_ttft_ms": 6751.595,
+            "a_hit": 1015,
+            "b_hit": 4
+          },
+          {
+            "req_id": 478,
+            "delta_ttft_ms": 6468.723,
+            "a_hit": 1012,
+            "b_hit": 3
+          },
+          {
+            "req_id": 451,
+            "delta_ttft_ms": 6427.2,
+            "a_hit": 943,
+            "b_hit": 5
+          },
+          {
+            "req_id": 537,
+            "delta_ttft_ms": 6093.109,
+            "a_hit": 1015,
+            "b_hit": 5
+          },
+          {
+            "req_id": 432,
+            "delta_ttft_ms": 5912.533,
+            "a_hit": 1015,
+            "b_hit": 3
+          },
+          {
+            "req_id": 484,
+            "delta_ttft_ms": 5803.856,
+            "a_hit": 1032,
+            "b_hit": 6
+          },
+          {
+            "req_id": 356,
+            "delta_ttft_ms": 5757.051,
+            "a_hit": 1012,
+            "b_hit": 5
+          },
+          {
+            "req_id": 464,
+            "delta_ttft_ms": 5747.325,
+            "a_hit": 1011,
+            "b_hit": 5
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 425,
+            "delta_ttft_ms": -9085.474,
+            "a_hit": 4,
+            "b_hit": 4
+          },
+          {
+            "req_id": 295,
+            "delta_ttft_ms": -6962.052,
+            "a_hit": 4,
+            "b_hit": 928
+          },
+          {
+            "req_id": 286,
+            "delta_ttft_ms": -6870.465,
+            "a_hit": 3,
+            "b_hit": 1012
+          },
+          {
+            "req_id": 394,
+            "delta_ttft_ms": -6421.409,
+            "a_hit": 3,
+            "b_hit": 955
+          },
+          {
+            "req_id": 341,
+            "delta_ttft_ms": -6043.049,
+            "a_hit": 3,
+            "b_hit": 1008
+          },
+          {
+            "req_id": 445,
+            "delta_ttft_ms": -5988.21,
+            "a_hit": 3,
+            "b_hit": 824
+          },
+          {
+            "req_id": 207,
+            "delta_ttft_ms": -5971.323,
+            "a_hit": 6,
+            "b_hit": 3
+          },
+          {
+            "req_id": 412,
+            "delta_ttft_ms": -5870.125,
+            "a_hit": 3,
+            "b_hit": 936
+          },
+          {
+            "req_id": 416,
+            "delta_ttft_ms": -5614.225,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 267,
+            "delta_ttft_ms": -5470.499,
+            "a_hit": 5,
+            "b_hit": 509
+          }
+        ]
+      }
+    },
+    {
+      "case": "v21_victim",
+      "comparison": "PEEK matched vs Extension",
+      "a": "04_peek_chunk_r2_attempt01",
+      "b": "03_victim_ticket_r2_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": 170.287,
+          "p05": -2607.126,
+          "p50": 90.051,
+          "p95": 3341.97
+        },
+        "b_faster_by_500ms": 72,
+        "b_slower_by_500ms": 128,
+        "b_faster_by_1000ms": 53,
+        "b_slower_by_1000ms": 83,
+        "cache_token_delta_mean": 16.701,
+        "a_high_hit_512_count": 195,
+        "a_high_hit_to_b_low_hit_32": 22,
+        "collapse_request_indices_sample": [
+          194,
+          195,
+          210,
+          218,
+          231,
+          242,
+          267,
+          281,
+          304,
+          332,
+          339,
+          348
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 332,
+            "delta_ttft_ms": 8174.804,
+            "a_hit": 1013,
+            "b_hit": 5
+          },
+          {
+            "req_id": 281,
+            "delta_ttft_ms": 7167.615,
+            "a_hit": 1007,
+            "b_hit": 3
+          },
+          {
+            "req_id": 527,
+            "delta_ttft_ms": 7103.822,
+            "a_hit": 1032,
+            "b_hit": 5
+          },
+          {
+            "req_id": 451,
+            "delta_ttft_ms": 6624.222,
+            "a_hit": 907,
+            "b_hit": 5
+          },
+          {
+            "req_id": 537,
+            "delta_ttft_ms": 6575.446,
+            "a_hit": 1013,
+            "b_hit": 5
+          },
+          {
+            "req_id": 195,
+            "delta_ttft_ms": 6321.065,
+            "a_hit": 955,
+            "b_hit": 5
+          },
+          {
+            "req_id": 207,
+            "delta_ttft_ms": 6087.434,
+            "a_hit": 6,
+            "b_hit": 6
+          },
+          {
+            "req_id": 218,
+            "delta_ttft_ms": 6015.494,
+            "a_hit": 1011,
+            "b_hit": 5
+          },
+          {
+            "req_id": 194,
+            "delta_ttft_ms": 5946.846,
+            "a_hit": 787,
+            "b_hit": 5
+          },
+          {
+            "req_id": 460,
+            "delta_ttft_ms": 5808.407,
+            "a_hit": 888,
+            "b_hit": 6
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 401,
+            "delta_ttft_ms": -17719.183,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 399,
+            "delta_ttft_ms": -10138.999,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 275,
+            "delta_ttft_ms": -8683.461,
+            "a_hit": 5,
+            "b_hit": 939
+          },
+          {
+            "req_id": 432,
+            "delta_ttft_ms": -7935.766,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 438,
+            "delta_ttft_ms": -7933.021,
+            "a_hit": 4,
+            "b_hit": 3
+          },
+          {
+            "req_id": 240,
+            "delta_ttft_ms": -7243.61,
+            "a_hit": 3,
+            "b_hit": 1011
+          },
+          {
+            "req_id": 532,
+            "delta_ttft_ms": -5920.557,
+            "a_hit": 5,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 77,
+            "delta_ttft_ms": -5725.476,
+            "a_hit": 5,
+            "b_hit": 3
+          },
+          {
+            "req_id": 435,
+            "delta_ttft_ms": -4896.569,
+            "a_hit": 3,
+            "b_hit": 5
+          },
+          {
+            "req_id": 84,
+            "delta_ttft_ms": -4647.242,
+            "a_hit": 3,
+            "b_hit": 5
+          }
+        ]
+      }
+    },
+    {
+      "case": "v22_cross_1911",
+      "comparison": "PEEK matched vs Extension",
+      "a": "01_peek_full_r1_attempt01",
+      "b": "02_cross_section_r1_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": 12.661,
+          "p05": -1812.079,
+          "p50": -12.111,
+          "p95": 2262.662
+        },
+        "b_faster_by_500ms": 81,
+        "b_slower_by_500ms": 84,
+        "b_faster_by_1000ms": 47,
+        "b_slower_by_1000ms": 54,
+        "cache_token_delta_mean": -5.625,
+        "a_high_hit_512_count": 206,
+        "a_high_hit_to_b_low_hit_32": 29,
+        "collapse_request_indices_sample": [
+          77,
+          81,
+          138,
+          142,
+          168,
+          203,
+          240,
+          261,
+          275,
+          295,
+          327,
+          328
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 77,
+            "delta_ttft_ms": 12758.706,
+            "a_hit": 1014,
+            "b_hit": 5
+          },
+          {
+            "req_id": 81,
+            "delta_ttft_ms": 10739.754,
+            "a_hit": 940,
+            "b_hit": 5
+          },
+          {
+            "req_id": 356,
+            "delta_ttft_ms": 9379.108,
+            "a_hit": 1011,
+            "b_hit": 3
+          },
+          {
+            "req_id": 275,
+            "delta_ttft_ms": 8703.937,
+            "a_hit": 912,
+            "b_hit": 3
+          },
+          {
+            "req_id": 240,
+            "delta_ttft_ms": 7577.185,
+            "a_hit": 1015,
+            "b_hit": 5
+          },
+          {
+            "req_id": 450,
+            "delta_ttft_ms": 6517.348,
+            "a_hit": 1010,
+            "b_hit": 6
+          },
+          {
+            "req_id": 378,
+            "delta_ttft_ms": 6358.571,
+            "a_hit": 836,
+            "b_hit": 3
+          },
+          {
+            "req_id": 464,
+            "delta_ttft_ms": 5807.368,
+            "a_hit": 1009,
+            "b_hit": 5
+          },
+          {
+            "req_id": 394,
+            "delta_ttft_ms": 5796.042,
+            "a_hit": 1027,
+            "b_hit": 3
+          },
+          {
+            "req_id": 416,
+            "delta_ttft_ms": 5187.299,
+            "a_hit": 1032,
+            "b_hit": 3
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 207,
+            "delta_ttft_ms": -15945.028,
+            "a_hit": 5,
+            "b_hit": 6
+          },
+          {
+            "req_id": 195,
+            "delta_ttft_ms": -12323.923,
+            "a_hit": 5,
+            "b_hit": 1013
+          },
+          {
+            "req_id": 218,
+            "delta_ttft_ms": -11065.812,
+            "a_hit": 5,
+            "b_hit": 1011
+          },
+          {
+            "req_id": 332,
+            "delta_ttft_ms": -9435.633,
+            "a_hit": 3,
+            "b_hit": 695
+          },
+          {
+            "req_id": 434,
+            "delta_ttft_ms": -8843.3,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 317,
+            "delta_ttft_ms": -6059.619,
+            "a_hit": 3,
+            "b_hit": 1033
+          },
+          {
+            "req_id": 507,
+            "delta_ttft_ms": -5926.141,
+            "a_hit": 4,
+            "b_hit": 886
+          },
+          {
+            "req_id": 205,
+            "delta_ttft_ms": -5383.02,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 482,
+            "delta_ttft_ms": -5288.531,
+            "a_hit": 3,
+            "b_hit": 1009
+          },
+          {
+            "req_id": 323,
+            "delta_ttft_ms": -4113.603,
+            "a_hit": 3,
+            "b_hit": 3
+          }
+        ]
+      }
+    },
+    {
+      "case": "v22_cross_1911",
+      "comparison": "PEEK matched vs Extension",
+      "a": "04_peek_full_r2_attempt01",
+      "b": "03_cross_section_r2_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": -19.876,
+          "p05": -985.393,
+          "p50": 23.44,
+          "p95": 1170.276
+        },
+        "b_faster_by_500ms": 43,
+        "b_slower_by_500ms": 80,
+        "b_faster_by_1000ms": 26,
+        "b_slower_by_1000ms": 34,
+        "cache_token_delta_mean": 7.271,
+        "a_high_hit_512_count": 195,
+        "a_high_hit_to_b_low_hit_32": 11,
+        "collapse_request_indices_sample": [
+          127,
+          161,
+          182,
+          286,
+          317,
+          322,
+          353,
+          478,
+          519,
+          552,
+          559
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 478,
+            "delta_ttft_ms": 6786.45,
+            "a_hit": 1006,
+            "b_hit": 3
+          },
+          {
+            "req_id": 420,
+            "delta_ttft_ms": 5607.894,
+            "a_hit": 5,
+            "b_hit": 3
+          },
+          {
+            "req_id": 317,
+            "delta_ttft_ms": 5453.944,
+            "a_hit": 1033,
+            "b_hit": 3
+          },
+          {
+            "req_id": 375,
+            "delta_ttft_ms": 4792.757,
+            "a_hit": 4,
+            "b_hit": 3
+          },
+          {
+            "req_id": 519,
+            "delta_ttft_ms": 3701.19,
+            "a_hit": 1063,
+            "b_hit": 3
+          },
+          {
+            "req_id": 415,
+            "delta_ttft_ms": 3551.726,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 235,
+            "delta_ttft_ms": 3354.69,
+            "a_hit": 3,
+            "b_hit": 5
+          },
+          {
+            "req_id": 103,
+            "delta_ttft_ms": 3279.451,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 251,
+            "delta_ttft_ms": 2504.43,
+            "a_hit": 5,
+            "b_hit": 3
+          },
+          {
+            "req_id": 489,
+            "delta_ttft_ms": 2392.007,
+            "a_hit": 506,
+            "b_hit": 3
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 438,
+            "delta_ttft_ms": -14272.273,
+            "a_hit": 4,
+            "b_hit": 851
+          },
+          {
+            "req_id": 401,
+            "delta_ttft_ms": -12526.397,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 180,
+            "delta_ttft_ms": -9572.354,
+            "a_hit": 6,
+            "b_hit": 4
+          },
+          {
+            "req_id": 177,
+            "delta_ttft_ms": -8922.979,
+            "a_hit": 3,
+            "b_hit": 4
+          },
+          {
+            "req_id": 90,
+            "delta_ttft_ms": -8779.766,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 75,
+            "delta_ttft_ms": -7809.553,
+            "a_hit": 4,
+            "b_hit": 4
+          },
+          {
+            "req_id": 416,
+            "delta_ttft_ms": -5163.47,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 131,
+            "delta_ttft_ms": -4874.878,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 78,
+            "delta_ttft_ms": -4377.542,
+            "a_hit": 10,
+            "b_hit": 3
+          },
+          {
+            "req_id": 394,
+            "delta_ttft_ms": -3661.297,
+            "a_hit": 3,
+            "b_hit": 882
+          }
+        ]
+      }
+    },
+    {
+      "case": "v22_cross_1711",
+      "comparison": "PEEK matched vs Extension",
+      "a": "01_peek_full_r1_attempt01",
+      "b": "02_cross_section_r1_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": -14.83,
+          "p05": -448.544,
+          "p50": 26.029,
+          "p95": 794.91
+        },
+        "b_faster_by_500ms": 23,
+        "b_slower_by_500ms": 33,
+        "b_faster_by_1000ms": 16,
+        "b_slower_by_1000ms": 19,
+        "cache_token_delta_mean": 0.684,
+        "a_high_hit_512_count": 203,
+        "a_high_hit_to_b_low_hit_32": 9,
+        "collapse_request_indices_sample": [
+          311,
+          334,
+          348,
+          420,
+          458,
+          471,
+          493,
+          556,
+          566
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 311,
+            "delta_ttft_ms": 3977.316,
+            "a_hit": 1003,
+            "b_hit": 3
+          },
+          {
+            "req_id": 566,
+            "delta_ttft_ms": 2500.423,
+            "a_hit": 1032,
+            "b_hit": 3
+          },
+          {
+            "req_id": 252,
+            "delta_ttft_ms": 1968.686,
+            "a_hit": 10,
+            "b_hit": 3
+          },
+          {
+            "req_id": 523,
+            "delta_ttft_ms": 1805.043,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 518,
+            "delta_ttft_ms": 1689.23,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 458,
+            "delta_ttft_ms": 1415.129,
+            "a_hit": 1013,
+            "b_hit": 3
+          },
+          {
+            "req_id": 420,
+            "delta_ttft_ms": 1414.668,
+            "a_hit": 1032,
+            "b_hit": 3
+          },
+          {
+            "req_id": 546,
+            "delta_ttft_ms": 1397.613,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 504,
+            "delta_ttft_ms": 1381.561,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 513,
+            "delta_ttft_ms": 1364.059,
+            "a_hit": 3,
+            "b_hit": 3
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 369,
+            "delta_ttft_ms": -8284.577,
+            "a_hit": 4,
+            "b_hit": 411
+          },
+          {
+            "req_id": 519,
+            "delta_ttft_ms": -7490.889,
+            "a_hit": 3,
+            "b_hit": 6
+          },
+          {
+            "req_id": 508,
+            "delta_ttft_ms": -5602.386,
+            "a_hit": 6,
+            "b_hit": 1016
+          },
+          {
+            "req_id": 292,
+            "delta_ttft_ms": -4376.526,
+            "a_hit": 4,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 401,
+            "delta_ttft_ms": -3928.382,
+            "a_hit": 3,
+            "b_hit": 1033
+          },
+          {
+            "req_id": 506,
+            "delta_ttft_ms": -3703.567,
+            "a_hit": 4,
+            "b_hit": 6
+          },
+          {
+            "req_id": 439,
+            "delta_ttft_ms": -3019.926,
+            "a_hit": 3,
+            "b_hit": 5
+          },
+          {
+            "req_id": 222,
+            "delta_ttft_ms": -2320.488,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 453,
+            "delta_ttft_ms": -2214.88,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 464,
+            "delta_ttft_ms": -2167.665,
+            "a_hit": 3,
+            "b_hit": 1032
+          }
+        ]
+      }
+    },
+    {
+      "case": "v22_cross_1711",
+      "comparison": "PEEK matched vs Extension",
+      "a": "04_peek_full_r2_attempt01",
+      "b": "03_cross_section_r2_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": 59.703,
+          "p05": -1594.019,
+          "p50": 30.249,
+          "p95": 1667.15
+        },
+        "b_faster_by_500ms": 45,
+        "b_slower_by_500ms": 75,
+        "b_faster_by_1000ms": 32,
+        "b_slower_by_1000ms": 38,
+        "cache_token_delta_mean": 12.193,
+        "a_high_hit_512_count": 198,
+        "a_high_hit_to_b_low_hit_32": 18,
+        "collapse_request_indices_sample": [
+          102,
+          127,
+          194,
+          214,
+          262,
+          317,
+          320,
+          336,
+          340,
+          359,
+          447,
+          449
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 96,
+            "delta_ttft_ms": 10096.768,
+            "a_hit": 3,
+            "b_hit": 10
+          },
+          {
+            "req_id": 105,
+            "delta_ttft_ms": 9825.537,
+            "a_hit": 10,
+            "b_hit": 3
+          },
+          {
+            "req_id": 468,
+            "delta_ttft_ms": 9155.208,
+            "a_hit": 1014,
+            "b_hit": 5
+          },
+          {
+            "req_id": 467,
+            "delta_ttft_ms": 8714.836,
+            "a_hit": 951,
+            "b_hit": 3
+          },
+          {
+            "req_id": 147,
+            "delta_ttft_ms": 7656.11,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 165,
+            "delta_ttft_ms": 6230.242,
+            "a_hit": 5,
+            "b_hit": 6
+          },
+          {
+            "req_id": 148,
+            "delta_ttft_ms": 6218.242,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 521,
+            "delta_ttft_ms": 5193.922,
+            "a_hit": 1013,
+            "b_hit": 3
+          },
+          {
+            "req_id": 217,
+            "delta_ttft_ms": 4976.68,
+            "a_hit": 3,
+            "b_hit": 3
+          },
+          {
+            "req_id": 207,
+            "delta_ttft_ms": 4026.981,
+            "a_hit": 5,
+            "b_hit": 5
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 353,
+            "delta_ttft_ms": -17398.159,
+            "a_hit": 5,
+            "b_hit": 1009
+          },
+          {
+            "req_id": 323,
+            "delta_ttft_ms": -12931.566,
+            "a_hit": 3,
+            "b_hit": 1066
+          },
+          {
+            "req_id": 335,
+            "delta_ttft_ms": -12127.623,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 465,
+            "delta_ttft_ms": -10040.329,
+            "a_hit": 3,
+            "b_hit": 1013
+          },
+          {
+            "req_id": 442,
+            "delta_ttft_ms": -9664.637,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 347,
+            "delta_ttft_ms": -4647.259,
+            "a_hit": 3,
+            "b_hit": 5
+          },
+          {
+            "req_id": 275,
+            "delta_ttft_ms": -4519.527,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 311,
+            "delta_ttft_ms": -3484.24,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 267,
+            "delta_ttft_ms": -3366.793,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 288,
+            "delta_ttft_ms": -3362.919,
+            "a_hit": 3,
+            "b_hit": 884
+          }
+        ]
+      }
+    },
+    {
+      "case": "v22_quick_1911",
+      "comparison": "PEEK matched vs Extension",
+      "a": "01_peek_full_r1_attempt01",
+      "b": "02_quickdemote_r1_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": -62.61,
+          "p05": -1501.446,
+          "p50": -44.012,
+          "p95": 1483.318
+        },
+        "b_faster_by_500ms": 76,
+        "b_slower_by_500ms": 49,
+        "b_faster_by_1000ms": 33,
+        "b_slower_by_1000ms": 30,
+        "cache_token_delta_mean": 5.326,
+        "a_high_hit_512_count": 194,
+        "a_high_hit_to_b_low_hit_32": 21,
+        "collapse_request_indices_sample": [
+          77,
+          81,
+          203,
+          327,
+          328,
+          333,
+          356,
+          363,
+          375,
+          414,
+          416,
+          450
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 77,
+            "delta_ttft_ms": 12808.303,
+            "a_hit": 1014,
+            "b_hit": 5
+          },
+          {
+            "req_id": 81,
+            "delta_ttft_ms": 10986.617,
+            "a_hit": 938,
+            "b_hit": 5
+          },
+          {
+            "req_id": 356,
+            "delta_ttft_ms": 9740.465,
+            "a_hit": 1007,
+            "b_hit": 3
+          },
+          {
+            "req_id": 333,
+            "delta_ttft_ms": 8757.964,
+            "a_hit": 1008,
+            "b_hit": 5
+          },
+          {
+            "req_id": 450,
+            "delta_ttft_ms": 6541.625,
+            "a_hit": 1010,
+            "b_hit": 6
+          },
+          {
+            "req_id": 460,
+            "delta_ttft_ms": 5888.737,
+            "a_hit": 1008,
+            "b_hit": 5
+          },
+          {
+            "req_id": 416,
+            "delta_ttft_ms": 5155.977,
+            "a_hit": 1009,
+            "b_hit": 3
+          },
+          {
+            "req_id": 544,
+            "delta_ttft_ms": 5096.961,
+            "a_hit": 1013,
+            "b_hit": 3
+          },
+          {
+            "req_id": 327,
+            "delta_ttft_ms": 5052.383,
+            "a_hit": 1009,
+            "b_hit": 5
+          },
+          {
+            "req_id": 548,
+            "delta_ttft_ms": 5010.108,
+            "a_hit": 1014,
+            "b_hit": 5
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 432,
+            "delta_ttft_ms": -11387.676,
+            "a_hit": 3,
+            "b_hit": 1013
+          },
+          {
+            "req_id": 195,
+            "delta_ttft_ms": -10998.353,
+            "a_hit": 5,
+            "b_hit": 908
+          },
+          {
+            "req_id": 218,
+            "delta_ttft_ms": -10516.793,
+            "a_hit": 5,
+            "b_hit": 1034
+          },
+          {
+            "req_id": 451,
+            "delta_ttft_ms": -10126.376,
+            "a_hit": 5,
+            "b_hit": 1041
+          },
+          {
+            "req_id": 507,
+            "delta_ttft_ms": -8309.648,
+            "a_hit": 4,
+            "b_hit": 1012
+          },
+          {
+            "req_id": 319,
+            "delta_ttft_ms": -6752.815,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 532,
+            "delta_ttft_ms": -6639.981,
+            "a_hit": 5,
+            "b_hit": 1013
+          },
+          {
+            "req_id": 410,
+            "delta_ttft_ms": -5183.323,
+            "a_hit": 4,
+            "b_hit": 4
+          },
+          {
+            "req_id": 482,
+            "delta_ttft_ms": -5056.479,
+            "a_hit": 5,
+            "b_hit": 1033
+          },
+          {
+            "req_id": 478,
+            "delta_ttft_ms": -4729.41,
+            "a_hit": 3,
+            "b_hit": 963
+          }
+        ]
+      }
+    },
+    {
+      "case": "v22_quick_1911",
+      "comparison": "PEEK matched vs Extension",
+      "a": "04_peek_full_r2_attempt01",
+      "b": "03_quickdemote_r2_attempt01",
+      "data": {
+        "n_matched": 512,
+        "paired_ttft_ms_delta_b_minus_a": {
+          "mean": 130.304,
+          "p05": -963.214,
+          "p50": 58.955,
+          "p95": 2338.912
+        },
+        "b_faster_by_500ms": 38,
+        "b_slower_by_500ms": 77,
+        "b_faster_by_1000ms": 25,
+        "b_slower_by_1000ms": 40,
+        "cache_token_delta_mean": 20.996,
+        "a_high_hit_512_count": 193,
+        "a_high_hit_to_b_low_hit_32": 14,
+        "collapse_request_indices_sample": [
+          68,
+          161,
+          168,
+          182,
+          233,
+          261,
+          332,
+          394,
+          416,
+          457,
+          507,
+          557
+        ],
+        "top_10_b_hurt": [
+          {
+            "req_id": 332,
+            "delta_ttft_ms": 9719.737,
+            "a_hit": 911,
+            "b_hit": 3
+          },
+          {
+            "req_id": 434,
+            "delta_ttft_ms": 8727.275,
+            "a_hit": 4,
+            "b_hit": 5
+          },
+          {
+            "req_id": 507,
+            "delta_ttft_ms": 5843.599,
+            "a_hit": 1010,
+            "b_hit": 4
+          },
+          {
+            "req_id": 416,
+            "delta_ttft_ms": 5419.211,
+            "a_hit": 920,
+            "b_hit": 3
+          },
+          {
+            "req_id": 394,
+            "delta_ttft_ms": 5338.704,
+            "a_hit": 862,
+            "b_hit": 3
+          },
+          {
+            "req_id": 544,
+            "delta_ttft_ms": 5312.228,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 548,
+            "delta_ttft_ms": 4820.945,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 487,
+            "delta_ttft_ms": 4337.929,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 207,
+            "delta_ttft_ms": 3725.697,
+            "a_hit": 3,
+            "b_hit": 6
+          },
+          {
+            "req_id": 457,
+            "delta_ttft_ms": 3703.955,
+            "a_hit": 923,
+            "b_hit": 3
+          }
+        ],
+        "top_10_b_helped": [
+          {
+            "req_id": 90,
+            "delta_ttft_ms": -9259.162,
+            "a_hit": 5,
+            "b_hit": 5
+          },
+          {
+            "req_id": 240,
+            "delta_ttft_ms": -7691.389,
+            "a_hit": 3,
+            "b_hit": 962
+          },
+          {
+            "req_id": 75,
+            "delta_ttft_ms": -7115.707,
+            "a_hit": 4,
+            "b_hit": 3
+          },
+          {
+            "req_id": 319,
+            "delta_ttft_ms": -6668.269,
+            "a_hit": 3,
+            "b_hit": 1032
+          },
+          {
+            "req_id": 464,
+            "delta_ttft_ms": -5599.953,
+            "a_hit": 5,
+            "b_hit": 1011
+          },
+          {
+            "req_id": 317,
+            "delta_ttft_ms": -5420.388,
+            "a_hit": 3,
+            "b_hit": 1033
+          },
+          {
+            "req_id": 478,
+            "delta_ttft_ms": -4762.449,
+            "a_hit": 3,
+            "b_hit": 935
+          },
+          {
+            "req_id": 531,
+            "delta_ttft_ms": -4659.618,
+            "a_hit": 3,
+            "b_hit": 1054
+          },
+          {
+            "req_id": 412,
+            "delta_ttft_ms": -4531.915,
+            "a_hit": 10,
+            "b_hit": 513
+          },
+          {
+            "req_id": 511,
+            "delta_ttft_ms": -4492.158,
+            "a_hit": 3,
+            "b_hit": 1033
+          }
+        ]
+      }
+    }
+  ],
+  "funnel_definition": [
+    {
+      "stage": "all_decisions",
+      "status": "partial_direct",
+      "reason": "sort events only after early gates; no every scheduling tick"
+    },
+    {
+      "stage": "positive_remaining_budget",
+      "status": "not_observable",
+      "reason": "free_kv_after is raw pool, not remaining PrefillAdder budgets, mixed decode or reservation"
+    },
+    {
+      "stage": "nonadmitted_candidate",
+      "status": "direct_for_nonempty_prefill_only",
+      "reason": "sort queue and admitted list via sort_tick"
+    },
+    {
+      "stage": "preserve_native_and_admit",
+      "status": "not_observable",
+      "reason": "no stop cause, req chunks, snapshot/lock and native plan delta"
+    },
+    {
+      "stage": "complete_prefill_same_tick",
+      "status": "proxy_only",
+      "reason": "sort main_hit/total token plus chunk512 cannot establish actual extend_input_len"
+    },
+    {
+      "stage": "no_extra_eviction",
+      "status": "not_observable",
+      "reason": "posthoc eviction trace from original plan is not hypothetical append"
+    },
+    {
+      "stage": "future_kv_and_time",
+      "status": "not_observable",
+      "reason": "running decode reservation and bounded execution-time model unavailable"
+    }
+  ]
+}
